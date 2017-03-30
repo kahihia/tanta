@@ -1,43 +1,44 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>Tanta Ventures</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../../static/css/master.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}"/>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" >
+<script src="jquery-2.1.4.min.js"></script>
+<script src="jquery.flip.js"></script>
+<script src="{% static 'js/myscript.js' %}"></script>
 
 </head>
 <body>
 <nav class="navbar navbar-inverse">
 <div class="navbar-header">
-	<a class="navbar-brand" href="#">Home</a>
+	<a id="logo" class="brand" href="#"><img src="{% static 'images/tanta.jpg' %}"></a>
 </div>
-	<ul class="nav navbar-nav">
+	<ul id=navlist class="nav navbar-nav">
 		<li><a href="{% url 'home_page:contact' %}">Contact Us</a></li>
 		<li><a href="{% url 'home_page:about' %}">About Us</a></li>
 	</ul>
 	
 </nav>
-<div id=jumbo class="container">
+<!-- <div id=jumbo class="container">
 	<div class="jumbotron">
 	<h1>Tanta Ventures</h1>
 	<p>Tanta Ventures is a consulting firm providing analytical support to small and mid-size companies in a variety of industries. We build customized solutions to help your business optimize operational efficiency, manage inventory, or reduce marketing costs through targeted advertising. </p>
-	<p><a class="btn btn-primary btn-lg" href="% url 'home_page:about' %}" role="button">Learn more</a></p>
+	<p><a class="btn btn-primary btn-lg" href="{% url 'home_page:about' %}" role="button">Learn more</a></p>
 	</div>
-
+ -->
 </div>
 <div class="container">
-	<h2>Success Stories</h2>
+	<h2>Marketing</h2>
 	<div class="row">
-		<div class="col-lg-4 col-xs-6 thumbnail"><img src="">
+		<div id= "card" class="col-lg-4 col-xs-6 thumbnail"><img src="{% static 'images/bokeh_plot.png' %}"/>
+
 			
 		</div>
 	</div>
 </div>
-<script
-			  src="http://code.jquery.com/jquery-3.2.1.slim.min.js"
-			  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-			  crossorigin="anonymous"></script>
 		
 </body>
 </html>
