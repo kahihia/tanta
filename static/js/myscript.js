@@ -1,6 +1,7 @@
 $( document ).ready(function(){
-	$("#card").flip({
-		axis: 'x',
-		trigger: 'click'
-	});
+	$ ("#card").hover(function(){
+		$ ( this ).fadeOut('slow')
+	},function(){$( this ).fadeIn('slow')});
+		
+	
 });
