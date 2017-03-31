@@ -10,17 +10,20 @@ body{
   background-repeat: no-repeat;
 }
 
-#jumbo{
-  opacity: 0.9;
-}
-#form{
-  opacity: 0.9;
+.jumbotron{
+  opacity: 0.8;
 }
 h2{
   color: #e0e2e5;
 }
 #navlist{
   font-size: 20px;
+}
+p{
+  color: #1e232b;
+}
+#form{
+  color: #e0e2e5;
 }
 header {
   padding: 10px;

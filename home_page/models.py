@@ -1,21 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Topic(models.Model):
-	top_name=models.CharField(max_length=140,unique=True)
+class NewLead(models.Model):
+	name=models.CharField(max_length=40)
+	email=models.EmailField(max_length=40)
+	verify_email=models.EmailField(max_length=40)
+	business=models.CharField(max_length=40)
+	text=models.CharField(max_length=400)
 
-	def __str__(self):
-		return self.top_name
 
-class Webpage(models.Model):
-	topic=models.ForeignKey(Topic)
-	name=models.CharField(max_length=140,unique=True)
-	url=models.URLField(unique=True)
 	def __str__(self):
 		return self.name
-
-class AccessRecord(models.Model):
-	name=models.ForeignKey(Webpage)
-	date=models.DateField()
-	def __str__(self):
-		return str(self.date)

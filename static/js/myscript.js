@@ -1,7 +1,9 @@
-$( document ).ready(function(){
-	$ ("#card").hover(function(){
-		$ ( this ).fadeOut('slow')
-	},function(){$( this ).fadeIn('slow')});
+// $( document ).ready(function(){
+// 	$ ("#card").mouseenter(function(){
+// 		$( this ).hide('slow')});
+// 	$("#card").mouseleave(function(){
+// 		$( this ).fadeIn('slow')
+// 	});
 		
 	
-});
+// });

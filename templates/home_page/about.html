@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-<html>
-<head>
-	<title>Tanta Ventures</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../static/css/master.css"/>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" />
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-<div class="navbar-header">
-	<a class="navbar-brand" href="{% url 'home_page:index' %}">Home</a>
-	<a class="navbar-brand" href="{% url 'home_page:contact' %}">Contact Us</a>
+{% extends "home_page/base.html" %}
+{% block body_block %}
+    
 
-</div>
-</nav>
 <div id=jumbo class="jumbotron">
 <div class="container">
 <h1>What we do</h1>
 <p>
-	We at Tanta Ventures believe that everyone should have access to the best technological tools available. Unfortunately, many of these tools have price points out of reach for small and medium-sized businesses. That's just not right. We aim to give you powerful data-driven tools for <span>visualization, optimization, and growth.</span>
+	We at Tanta Ventures believe that everyone should have access to the best technological tools available. Unfortunately, many of these tools have price points out of reach for small and medium-sized businesses. That's just not right. We aim to give you powerful data-driven tools for <strong><em>visualization, optimization, and growth.</em></strong>
 </p>
 <p>
 Whether you are a financial institution looking to ensure compliance with the Home Mortgage Disclosure Act and other relevant federal fair-lending legislation, or you want to leverage new technology and data to update credit risk modeling and analysis, Tanta Ventures will help ensure you get as much insight from you data as possible.</p>
@@ -30,10 +18,7 @@ Whether you are a financial institution looking to ensure compliance with the Ho
 </p>
 </div>
 </div>
-<script
-			  src="http://code.jquery.com/jquery-3.2.1.slim.min.js"
-			  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-			  crossorigin="anonymous"></script>
-		
+
 </body>
 </html>
+{% endblock body_block %}
