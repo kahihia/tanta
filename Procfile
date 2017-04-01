@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app
+web: gunicorn Tanta.wsgi.application:app
