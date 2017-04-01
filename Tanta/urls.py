@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
-from home_page import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from home_page import views
+from dashboard import views
 
 urlpatterns =[
     url(r'^admin/', admin.site.urls),
     url(r'^',include("home_page.urls",namespace='home_page')),
+    url(r'^dashboard/',include("dashboard.urls",namespace='dashboard'))
 ] 
