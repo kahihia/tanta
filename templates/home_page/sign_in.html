@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "home_page/base.html" %}
+{% block body_block %}
+
+<div class="jumbotron">
+	<h1>Please Sign In</h1>
+	<form action="{% url 'home_page:sign_in' %}" method="POST">
+		{% csrf_token %}
+		<input type="text" name="username" placeholder="username">
+		<input type="password" name="password">
+		<input type="submit" value="Sign In">
+	</form>
+
+</div>
+    
+{% endblock body_block %}

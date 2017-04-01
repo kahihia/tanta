@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_dir=os.path.join(BASE_DIR,"templates")
 STATIC_dir=os.path.join(BASE_DIR,"static")
+MEDIA_dir=os.path.join(BASE_DIR,'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -86,6 +87,13 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -93,6 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS':{'min_length':6}
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -122,6 +131,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
-    STATIC_dir
-    
+    STATIC_dir   
 ]
+MEDIA_ROOT=MEDIA_dir
+MEDIA_URL='/media/'
+LOGIN_URL='home_page/sign_in/'

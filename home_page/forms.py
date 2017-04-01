@@ -1,6 +1,8 @@
 from django import forms
 from django.core import validators
 from home_page.models import NewLead
+from django.contrib.auth.models import User
+from home_page.models import UserProfileInfo
 
 
 class NewLead(forms.ModelForm):
@@ -21,3 +23,15 @@ class NewLead(forms.ModelForm):
 		vmail=all_clean_data['verify_email']
 		if email != vmail:
 			raise forms.ValidationError("Make sure emails match")
+
+
+class UserForm(forms.ModelForm):
+	password=forms.CharField(widget=forms.PasswordInput())
+
+	class Meta():
+		model=User
+		fields=('username','email','password')
+class UserProfileInfoForm(forms.ModelForm):
+	class Meta():
+		model=UserProfileInfo
+		fields=('profile_pic',)

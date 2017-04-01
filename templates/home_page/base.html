@@ -15,9 +15,18 @@
 	<a id="logo" class="brand" href="{% url 'home_page:index' %}"><img src="{% static 'images/tanta.jpg' %}"></a>
 </div>
 	<ul id=navlist class="nav navbar-nav">
-		<li><a class="navbar-link" href="{% url 'home_page:contact' %}">Contact Us</a></li>
+			
 		<li><a class="navbar-link" href="{% url 'home_page:about' %}">About Us</a></li>
+		<li><a class="navbar-link" href="{% url 'home_page:contact' %}">Contact Us</a></li>
 		<li><a class="navbar-link" href="{% url 'home_page:onyx' %}">Why OnyxEngine</a></li>
+		
+		{% if user.is_authenticated %}
+		<li><a class= 'navbar-link' href="{% url 'home_page:logout' %}">Sign Out</a></li>
+		{% else %}
+		<li><a class="navbar-link" href="{% url 'home_page:sign_in' %}">Sign In</a></li>
+		<li><a class='navbar-link' href="{% url 'home_page:getstart' %}">Get Started</a></li>
+		
+		{% endif %}
 	</ul>
 	
 </nav>
