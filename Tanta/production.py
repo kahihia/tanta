@@ -28,7 +28,7 @@ SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["get-onyx.herokuapp.com"]
+ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
 
 # Application definition
@@ -130,9 +130,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_ROOT=STATIC_dir
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS=[
-    #STATIC_dir   
+
+    # STATIC_dir   
 ]
 MEDIA_ROOT=MEDIA_dir
 MEDIA_URL='/media/'
