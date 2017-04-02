@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__fi
 TEMPLATE_dir=os.path.join(BASE_DIR,"templates")
 STATIC_dir=os.path.join(BASE_DIR,"static")
 MEDIA_dir=os.path.join(BASE_DIR,'media')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Quick-start development settings - unsuitable for production
