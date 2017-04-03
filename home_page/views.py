@@ -5,7 +5,7 @@ from home_page.forms import NewLead,UserForm,UserProfileInfoForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
-from django.views.generic import TemplateView
+from django.views.generic import (TemplateView,View,ListView,DetailView,CreateView,UpdateView,DeleteView)
 
 # Create your views here.
 
