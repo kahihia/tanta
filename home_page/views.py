@@ -5,8 +5,13 @@ from home_page.forms import NewLead,UserForm,UserProfileInfoForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
+from django.views.generic import TemplateView
 
 # Create your views here.
+
+# class IndexView(TemplateView):
+# 	template_name='home_page/home.html'
+
 def index(request):
 	return render(request,'home_page/home.html')
 
