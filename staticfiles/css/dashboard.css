@@ -1,0 +1,23 @@
+body{
+	margin: auto;
+	padding: 15px;
+	font-family:'News Cycle', sans-serif;
+	font-weight: 600;
+	float:auto;
+	background-color: #006b29;*/
+	color: black;
+
+}
+.nav{
+	color: #f9ffe8;
+	font-size: 20px
+}
+h1{
+	color: black;
+}
+h4{
+	color: black;
+}
+.jumbotron{
+	color: black;
+}
