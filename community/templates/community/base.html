@@ -10,23 +10,24 @@
 	<title>Tanta Community</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top"></nav>
-<div class="container"></div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
 <ul class="nav navbar-nav">
-<li><a class="navebar-brand" href="{% url post_list %}">Posts</a></li>
+<li><a class="navebar-brand" href="{% url 'community:post_list' %}">Posts</a></li>
 </ul>
-<ul class='nav navbar-nav navbar-right'>
-	{% if user.is_authenticated %}
-	<li><a href="{% url 'post_new' %}">New Post</a></li>
-	<li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
-	<li><a href="{% url 'logout' %}">Log Out</a></li>
-	<li><a>Welcome: {{user.username}}</a></li>
-	    
-	{% else %}
-	    <li><a class="nav navbar-nav navbar-right" href="{% url 'login' %}"><span class='glyphicon glyphicon-user'></span></a></li>
-	{% endif %}
+<<ul class="nav navbar-nav">
+			
+		<li><a class="navbar-link" href="{% url 'community:post_new' %}">New Post</a></li>
+		<li><a class="navbar-link" href="{% url 'community:draft_list' %}">Drafts Us</a></li>
+		<li><a class="navbar-link" href="{% url 'home_page:logout' %}">Sign Out</a></li>	
+		<li><a>Welcome: {{user.username}}</a></li>
+	</ul>
+	
 	
 </ul>
+</div>
+</nav>
+	
 <div class="content container">
 	<div class="row">
 	<div class="col-md-8">

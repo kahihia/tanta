@@ -5,6 +5,7 @@ from django.views.generic import (TemplateView,CreateView,DetailView,ListView,Up
 from community.models import Post,Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -66,3 +67,5 @@ def post_publish(request,pk):
 	post=get_object_or_404(Post,pk=pk)
 	post.publish
 	return redirect('post_detail',pk=pk)
+def base(request):
+	return render(request,'community/base.html')
