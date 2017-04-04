@@ -18,8 +18,7 @@ class PostDetailView(DetailView):
 	model=Post
 
 class CreatePostView(LoginRequiredMixin,CreateView):
-	login_url='/sign_in/'
-	redirect_field_name='community/post_detail.html'
+	redirect_field_name='community/post_form.html'
 	model=Post
 class PostUpdateView(LoginRequiredMixin,UpdateView):
 	login_url='/sign_in/'
@@ -65,7 +64,5 @@ def comment_remove(request,pk):
 @login_required
 def post_publish(request,pk):
 	post=get_object_or_404(Post,pk=pk)
-	post.publish
+	post.publish()
 	return redirect('post_detail',pk=pk)
-def base(request):
-	return render(request,'community/base.html')

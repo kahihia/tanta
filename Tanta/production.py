@@ -18,6 +18,7 @@ TEMPLATE_dir=os.path.join(BASE_DIR,"templates")
 STATIC_DIR=os.path.join(BASE_DIR,"static")
 MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home_page',
     'dashboard',
+    'community',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'Tanta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_dir,],
+        'DIRS': [TEMPLATE_dir, COMMUNITY_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
