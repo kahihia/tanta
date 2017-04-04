@@ -9,12 +9,15 @@ class NewLead(forms.ModelForm):
 	class Meta:
 		model=NewLead
 		fields='__all__'
+		labels={
+		''
+		}
 		widgets={
 		'name' : forms.TextInput(attrs={'placeholder':'Name'}),
 		'email': forms.TextInput(attrs={'placeholder':'Email'}),
 		'verify_email':forms.TextInput(attrs={'placeholder':'Verify Email'}),
 		'business':forms.TextInput(attrs={'placeholder':'Business Name'}),
-		'text':forms.Textarea(attrs={'placeholder':'Describe your project. What problems are you facing? What ideas do you have?'})
+		'text':forms.Textarea(attrs={'cols':100,'rows':10,'placeholder':'Describe your project. What problems are you facing? What ideas do you have?'})
 		}
 		
 	def clean(self):

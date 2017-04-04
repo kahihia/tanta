@@ -25,5 +25,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns =[
     url(r'^admin/', admin.site.urls),
     url(r'^',include("home_page.urls",namespace='home_page')),
-    url(r'^dashboard/',include("dashboard.urls",namespace='dashboard'))
+    url(r'^dashboard/',include("dashboard.urls",namespace='dashboard')),
+    url(r'^dashboard/community',include("community.urls",namespace="community")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
