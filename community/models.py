@@ -22,8 +22,8 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
-class Comment(object):
-	post=models.ForeignKey('blog.Post',related_name='coments')
+class Comment(models.Model):
+	post=models.ForeignKey('community.Post',related_name='coments')
 	author=models.CharField(max_length=200)
 	text=models.TextField()
 	create_date=models.DateTimeField(default=timezone.now())
