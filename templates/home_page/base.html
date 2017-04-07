@@ -21,7 +21,7 @@
 		<li><a class="navbar-link" href="{% url 'home_page:onyx' %}">Why OnyxEngine</a></li>
 		
 		{% if user.is_authenticated %}
-		<li><a class= 'navbar-link' href="{% url 'dashboard:home' %}">My Projects</a></li>
+		<li><a class= 'navbar-link' href="{% url 'wallet:wallet_summary' %}">TantaPay</a></li>
 		<li><a class= 'navbar-link' href="{% url 'home_page:logout' %}">Sign Out</a></li>
 		{% else %}
 		<li><a class="navbar-link" href="{% url 'home_page:sign_in' %}">Sign In</a></li>

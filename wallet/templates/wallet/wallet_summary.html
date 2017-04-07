@@ -1,6 +1,15 @@
 {% extends "wallet/base.html" %}
 {% block content %}
 
+<h1>Welcome, {{user.username}}!</h1>
+<div class='container'>
+<div class="jumbotron">
 <h2>Your current balance is:</h2>
-{{user.wallet.balance}}
+<br>
+<h1>{{user.wallet.balance}}</h1><p>USD</p>
+<br>
+<a class="btn btn-success btn-lrg" href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
+
+</div>
+</div>
 {% endblock content %}
