@@ -18,6 +18,7 @@
 		<li><a class="navbar-link" href="{% url 'dashboard:home' %}">My Projects</a></li>
 		{% if user.is_authenticated %}
 		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:wallet_home' %}">TantaPay</a></li>
 
 		
 		{% endif %}
