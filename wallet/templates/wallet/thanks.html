@@ -1,5 +1,7 @@
 {% extends "wallet/base.html" %}
 {% block content %}
 <h1>Thanks!</h1>
+{{ transfer }}
+<a class="btn btn-success" href="{% url 'wallet:wallet_summary' %}">Return to Wallet</a>
     
 {% endblock content %}
