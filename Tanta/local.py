@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'home_page',
     'dashboard',
     'community',
+    'wallet',
 ]
 
 MIDDLEWARE = [
