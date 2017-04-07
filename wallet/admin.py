@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from wallet.models import TantaWallet
+from wallet.models import Wallet
 # Register your models here.
-admin.site.register(TantaWallet)
+admin.site.register(Wallet)
