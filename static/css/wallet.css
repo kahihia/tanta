@@ -1,0 +1,47 @@
+body{
+	margin: auto;
+	padding: auto;
+	font-family:'News Cycle', sans-serif;
+  font-weight: 600;
+  float:auto;
+  background: #68add8;
+}
+
+.jumbotron{
+  opacity: 0.8;
+  margin: auto;
+  padding: auto;
+}
+h2{
+  color: #0f1319;
+}
+#navlist{
+  font-size: 20px;
+}
+p{
+  color: #0f1319;
+}
+sub{
+  color: #1e232b;
+
+}
+.container-welcome{
+  padding: auto;
+  margin: auto;
+  position: relative;
+  left: 10%;
+
+}
+header {
+  padding: 10px;
+  font-family: "News Cycle", sans-serif;
+  background-color: #18b2f4;
+  margin:auto;
+  font-style: normal;
+  font-weight: 600;
+  color: #700;
+  width: 100%;
+}
+nav{
+  margin: 10px;
+}

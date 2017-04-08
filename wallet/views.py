@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q,F
 from django.http import HttpResponse
+from django import forms
 
 # Create your views here.
 def wallet_summary(request):
@@ -23,12 +24,14 @@ def transfer(request):
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
-				HttpResponse("User doesn't exist")
-
-			recipient.balance=float(recipient.balance) + float(transferamnt)
-			sender.balance=float(sender.balance) - float(transferamnt)
-			sender.save()
-			recipient.save()
+				HttpResponse("User does not exist")
+			if float(sender.balance) < float(transferamnt):
+				HttpResponse("Insufficient Funds")
+			else:
+				recipient.balance=float(recipient.balance) + float(transferamnt)
+				sender.balance=float(sender.balance) - float(transferamnt)
+				sender.save()
+				recipient.save()
 			return render(request,'thanks.html',{'transfer':transferamnt})
 	return render(request,'transfer.html',{'form':form})
 def info(request):
