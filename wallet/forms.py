@@ -1,5 +1,6 @@
 from django import forms
-from wallet.models import Wallet
+from django.core import validators
 
 class TransferForm(forms.Form):
-	amount=forms.DecimalField(max_digits=5,decimal_places=2,min_value=0)
+	amount=forms.DecimalField(max_digits=7,decimal_places=2,min_value=0)
+	user=forms.IntegerField()

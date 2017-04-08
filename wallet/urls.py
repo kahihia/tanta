@@ -3,6 +3,7 @@ from wallet import views
 
 urlpatterns=[
 	url(r'^$',views.wallet_summary,name="wallet_summary"),
-	url(r'^transfer/',views.transfer,name='transfer')
+	url(r'^transfer/$',views.transfer,name='transfer'),
+	url(r'^info/$',views.info,name='info'),
 
 ]
