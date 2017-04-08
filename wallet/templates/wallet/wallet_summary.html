@@ -7,7 +7,10 @@
 <div class="jumbotron">
 <h2>Your current balance is:</h2>
 <br>
-<h1>{{user.wallet.balance}}</h1><p>USD</p>
+<h1>{{user.wallet.dollars}}</h1><p>USD</p>
+<h1>{{user.wallet.euros}}</h1><p>EUR</p>
+<h1>{{user.wallet.pounds}}</h1><p>GBP</p>
+<h1>{{user.wallet.local}}</h1><p>GHC</p>
 <br>
 <a class="btn btn-success btn-lrg" href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
 

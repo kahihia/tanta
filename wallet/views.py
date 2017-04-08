@@ -24,9 +24,9 @@ def transfer(request):
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
-				HttpResponse("User does not exist")
+				return render(request,'invalid_user.html')
 			if float(sender.balance) < float(transferamnt):
-				HttpResponse("Insufficient Funds")
+				return render(request,'insufficient.html')
 			else:
 				recipient.balance=float(recipient.balance) + float(transferamnt)
 				sender.balance=float(sender.balance) - float(transferamnt)

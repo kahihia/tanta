@@ -11,22 +11,18 @@
 </div>
 <div class="container">
 <h2>Your balance is:</h2>
+<h3>{{user.wallet.dollars}}</h3><p>USD</p>
+<h3>{{user.wallet.euros}}</h3><p>EUR</p>
+<h3>{{user.wallet.pounds}}</h3><p>GBP</p>
+<h3>{{user.wallet.local}}</h3><p>GHC</p>
 <br>
-<div class="container"><h2>{{ user.wallet.balance }}</h2></div>
 <br>
 <form method='post'>
 {% csrf_token %}
 	
 	{{ form.as_p }}
 	<br>
-	<select name="currency">
-		<option value="usd">USD</option>
-		<option value="gbp">GBP</option>
-		<option value="eur">EUR</option>
-		<option value="GHC">GHC</option>
-	</select>
-	<br>
-	<br>
+	
 	<input type="submit" class="btn btn-primary" value="Transfer">
 </form>
 </div>
