@@ -19,7 +19,7 @@ def transfer(request):
 	if request.method=='POST':
 		transfer =TransferForm(request.POST)
 		if transfer.is_valid():
-			transferamnt=transfer['amount'].value()
+			transferamnt=float(transfer['amount'].value())
 			recipient=transfer['user'].value()
 			currency=transfer['currency'].value()
 			try:
@@ -47,8 +47,14 @@ def transfer(request):
 
 		# sender.transaction()
 		# recipient.transaction()
-		sender.transaction(sender,recipient,transferamnt,currency)
-		sender.save()
+		send_start,recieve_start = sender.grab_values(sender,recipient,currency)
+		if sender.transaction(send_start,recieve_start,transferamnt) == "Insufficient Funds":
+			return render(request,'insufficient.html')
+		else:
+			sfinal,rfinal=sender.transaction(send_start,recieve_start,transferamnt)
+		
+		sender.save_transaction(sender,recipient,sfinal,rfinal,currency)
+		
 		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency, 'test':sender})
 	return render(request,'transfer.html',{'form':transfer,})
 def info(request):

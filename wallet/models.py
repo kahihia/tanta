@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-
+from django.db.models import F
 # Create your models here.
 currencies=(
 	('USD','United States Dollar'),
@@ -12,36 +12,55 @@ currencies=(
 
 class Wallet(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-	dollars=models.DecimalField(max_digits=7,decimal_places=2,default=0)
-	euros=models.DecimalField(max_digits=7,decimal_places=2,default=0)
-	pounds=models.DecimalField(max_digits=7,decimal_places=2,default=0)
-	local=models.DecimalField(max_digits=7,decimal_places=2,default=0)
+	dollars=models.FloatField(default=0)
+	euros=models.FloatField(default=0)
+	pounds=models.FloatField(default=0)
+	local=models.FloatField(default=0)
 
 	
 ###### WRITE METHODS FOR TRANSACTIONS: EG VERIFY USER, CHECK AMOUNT, ETC. #####
-	def transaction(self,sender,recipient,amount,currency):
-
+	def grab_values(self,sender,recipient,currency):
 		if currency=='USD':
-				sender_balance=sender.dollars
-				recipient_balance=recipient.dollars
+				sender_start=sender.dollars
+				recipient_start=recipient.dollars
 		elif currency=='EUR':
-			sender_balance=sender.euros
-			recipient_balance=recipient.euros
+			sender_start=sender.euros
+			recipient_start=recipient.euros
 		elif currency=='GBP':
-			sender_balance=sender.pounds
-			recipient_balance=recipient.pounds
+			sender_start=sender.pounds
+			recipient_start=recipient.pounds
 		elif currency=='GHC':
-			sender_balance=sender.local
-			recipient_balance=recipient.local
-		if float(sender_balance) < float(amount):
+			sender_start=sender.local
+			recipient_start=recipient.local
+		return sender_start, recipient_start
+	
+	def transaction(self,sender_start,recipient_start,amount):
+		if sender_start < amount:
 			return "Insufficient Funds"
 		else:
-			recipient_balance=float(recipient_balance) + float(amount)
-			sender_balance=float(sender_balance) - float(amount)
-		
+			recipient_final=recipient_start + amount
+			sender_final=sender_start - amount
+		return recipient_final,sender_final
+	def save_transaction(self,sender,recipient,sender_final,recipient_final,currency):
+		if currency=='USD':
+				sender.dollars=sender_final
+				recipient.dollars=recipient_final
+		elif currency=='EUR':
+			sender.euros=sender_final
+			recipient.euros=recipient_final
+		elif currency=='GBP':
+			sender.pounds=sender_final
+			recipient.pounds=recipient_final
+		elif currency=='GHC':
+			sender.local=sender_final
+			recipient.local=recipient_final
+			print(sender.dollars)
 		self.save()
 
 
 
+
+
+
 	def __str__(self):
-		return str(self.dollars)
+		return str(self.user)
