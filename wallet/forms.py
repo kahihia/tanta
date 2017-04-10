@@ -8,3 +8,7 @@ class TransferForm(forms.Form):
 	currency=forms.ChoiceField(currencies,label='')
 	user=forms.IntegerField(label='',
 		widget=forms.NumberInput(attrs={'placeholder':"Enter recipient's id"}))
+
+class TForm(forms.ModelForm):
+	model=Wallet
+	fields=('dollars','euros','pounds','local')
