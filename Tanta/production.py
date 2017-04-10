@@ -20,6 +20,7 @@ MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
 WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
+WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -138,7 +139,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
 
-      STATIC_DIR
+      STATIC_DIR, WALLET_STATIC,
 ]
 MEDIA_ROOT=MEDIA_DIR
 MEDIA_URL='/media/'
