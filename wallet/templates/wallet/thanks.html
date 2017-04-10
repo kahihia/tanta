@@ -1,6 +1,11 @@
 {% extends "wallet/base.html" %}
 {% block content %}
 <h1>Thanks!</h1>
+<br>
+<h3>You successfully transfered:</h3>
+<h3>{{ transfer }} {{ denom }}</h3>
+<h3>{{test}}</h3>
+<br>
 <a class="btn btn-success" href="{% url 'wallet:wallet_summary' %}">Return to Wallet</a>
     
 {% endblock content %}

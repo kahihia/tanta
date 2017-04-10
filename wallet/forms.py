@@ -7,4 +7,4 @@ class TransferForm(forms.Form):
 		widget=forms.NumberInput(attrs={'placeholder':'Transfer Amount'}))
 	user=forms.IntegerField(label='',
 		widget=forms.NumberInput(attrs={'placeholder':"Enter recipient's id"}))
-	currency=forms.ChoiceField(currencies)
+	currency=forms.ChoiceField(currencies,label='')

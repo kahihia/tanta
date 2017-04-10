@@ -21,18 +21,36 @@ def transfer(request):
 		if transfer.is_valid():
 			transferamnt=transfer['amount'].value()
 			recipient=transfer['user'].value()
+			currency=transfer['currency'].value()
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
 				return render(request,'invalid_user.html')
-			if float(sender.balance) < float(transferamnt):
-				return render(request,'insufficient.html')
-			else:
-				recipient.balance=float(recipient.balance) + float(transferamnt)
-				sender.balance=float(sender.balance) - float(transferamnt)
-				sender.save()
-				recipient.save()
-			return render(request,'thanks.html',{'transfer':transferamnt})
+			if currency=='USD':
+				sender_balance=sender.dollars
+				recipient_balance=recipient.dollars
+			elif currency=='EUR':
+				sender_balance=sender.euros
+				recipient_balance=recipient.euros
+			elif currency=='GBP':
+				sender_balance=sender.pounds
+				recipient_balance=recipient.pounds
+			elif currency=='GHC':
+				sender_balance=sender.local
+				recipient_balance=recipient.local
+			
+		if float(sender_balance) < float(transferamnt):
+			return render(request,'insufficient.html')
+		else:
+			recipient_balance=float(recipient_balance) + float(transferamnt)
+			sender_balance=float(sender_balance) - float(transferamnt)
+		sender.save()
+		recipient.save()
+		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency,'test':sender_balance})
 	return render(request,'transfer.html',{'form':transfer,})
 def info(request):
 	return render(request,'info.html')
+
+
+
+
