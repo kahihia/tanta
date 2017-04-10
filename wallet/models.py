@@ -4,6 +4,12 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
+currencies=(
+	('USD','United States Dollar'),
+	('GBP','British Pound'),
+	('EUR','Euro'),
+	('GHC','Ghanaian Cedi'),)
+
 class Wallet(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	dollars=models.DecimalField(max_digits=7,decimal_places=2,default=0)

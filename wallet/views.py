@@ -14,13 +14,13 @@ from django import forms
 def wallet_summary(request):
 	return render(request,'wallet_summary.html')
 def transfer(request):
-	form = TransferForm()
+	transfer = TransferForm()
 	sender=Wallet.objects.get(user=request.user)
 	if request.method=='POST':
-		form =TransferForm(request.POST)
-		if form.is_valid():
-			transferamnt=form['amount'].value()
-			recipient=form['user'].value()
+		transfer =TransferForm(request.POST)
+		if transfer.is_valid():
+			transferamnt=transfer['amount'].value()
+			recipient=transfer['user'].value()
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
@@ -33,6 +33,6 @@ def transfer(request):
 				sender.save()
 				recipient.save()
 			return render(request,'thanks.html',{'transfer':transferamnt})
-	return render(request,'transfer.html',{'form':form})
+	return render(request,'transfer.html',{'form':transfer,})
 def info(request):
 	return render(request,'info.html')
