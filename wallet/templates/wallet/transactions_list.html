@@ -1,14 +1,15 @@
 {% extends "wallet/base.html" %}
 {% block content %}
-    
-    	<div class='container'>
+    	<div class="container">
+    	<div class='jumbotron'>
     	{% for transfer in transactions_list %}
     {% if user.username == transfer.sender %}
-    <h3>Sent {{ transfer.reciever}} {{transfer.amount}} on {{transfer.transfer_date|date:'M d, Y P e'}} </h3> 
+    <h3>Sent {{ transfer.reciever}} {{transfer.amount}} {{transfer.currency}} on {{transfer.transfer_date|date:'M d, Y P e'}} </h3> 
     {% else %}
-     <h3>Recieved {{transfer.amount}} from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}
+     <h3><strong>Recieved</strong> {{transfer.amount}} {{transfer.currency}} from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}</h3>
     {% endif %}
      {% endfor %}
+    	</div>
     	</div>
    
 {% endblock content %}

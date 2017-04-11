@@ -8,10 +8,14 @@ body{
 }
 
 .jumbotron{
-  opacity: 0.8;
+  opacity: 0.9;
   margin: auto;
   padding: auto;
+  box-shadow: 7px 7px 5px #474744;
+  background: #d0d3cf;
+  
 }
+
 img{
   height: 42px;
   width: 42px;
@@ -22,6 +26,12 @@ h2{
 }
 #navlist{
   font-size: 20px;
+}
+strong{
+  color: #43a024;
+}
+h1{
+  font-family: 'Catamaran', sans-serif
 }
 p{
   color: #0f1319;
