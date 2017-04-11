@@ -13,6 +13,7 @@ from django.db.models.signals import post_save
 from actstream import action
 from actstream.models import user_stream
 
+
 # Create your views here.
 def wallet_summary(request):
 	# user_stream(request.user, with_user_activty=True)
@@ -39,8 +40,9 @@ def transfer(request):
 			send_final=sender.transaction_send(send_start,transferamnt)
 		recip_final=recipient.transaction_recieve(recieve_start,transferamnt)
 		sender.commit_transaction(sender,recipient,currency,send_final,recip_final)
+		
 		recipient.commit_transaction(sender,recipient,currency,send_final,recip_final)
-		# action.send(request.user,verb='transfered', action_object=transferamnt+currency, target=recipient)
+		activity=action.send(request.user,verb='transfered', action_object=Wallet, target=recipient)
 
 		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency,})
 	return render(request,'transfer.html',{'form':transfer,})
