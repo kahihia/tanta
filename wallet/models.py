@@ -20,6 +20,8 @@ class Wallet(models.Model):
 	
 ###### WRITE METHODS FOR TRANSACTIONS: EG VERIFY USER, CHECK AMOUNT, ETC. #####
 	def grab_values(self,sender,recipient,currency):
+		if sender == sender:
+			return "Can't Send Money to yourself!"
 		if currency=='USD':
 				sender_start=sender.dollars
 				recipient_start=recipient.dollars

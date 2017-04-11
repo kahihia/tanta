@@ -31,8 +31,11 @@ def transfer(request):
 				recipient=Wallet.objects.get(user=recipient)
 			except:
 				return render(request,'invalid_user.html')
-	
-		send_start,recieve_start = sender.grab_values(sender,recipient,currency)
+		try:
+			send_start,recieve_start = sender.grab_values(sender,recipient,currency)
+		except:
+			return render(request, 'invalid_user.html')
+
 		if sender.transaction_send(send_start,transferamnt) == "Insufficient Funds":
 			return render(request,'insufficient.html')
 		else:

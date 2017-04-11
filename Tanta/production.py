@@ -33,7 +33,12 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
-
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
+SECURE_HSTS_SECONDS=30
+SECURE_CONTENT_TYPE_NOSNIFF=True
+SECURE_BROWSER_XSS_FILTER=True
+X_FRAME_OPTIONS='DENY'
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
     'dashboard',
     'community',
     'wallet',
+    'actstream',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +66,14 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+ACTSTREAM_SETTINGS ={
+    'MANAGER': 'actstream.managers.ActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': False,
+    'GFK_FETCH_DEPTH': 1,
+}
+ACTSTREAM_ACTION_MODELS=['auth.User']
 ROOT_URLCONF = 'Tanta.urls'
 
 TEMPLATES = [
