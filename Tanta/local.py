@@ -30,7 +30,12 @@ SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
+SECURE_HSTS_SECONDS=30
+SECURE_CONTENT_TYPE_NOSNIFF=True
+SECURE_BROWSER_XSS_FILTER=True
+X_FRAME_OPTIONS='DENY'
 ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
 
