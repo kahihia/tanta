@@ -34,13 +34,16 @@ class Wallet(models.Model):
 			recipient_start=recipient.local
 		return sender_start, recipient_start
 	
-	def transaction(self,sender,recipient,sender_start,recipient_start,amount,currency):
+	def transaction_send(self,sender_start,amount):
 		if sender_start < amount:
 			return "Insufficient Funds"
 		else:
-			recipient_final=recipient_start + amount
 			sender_final=sender_start - amount
-		
+		return sender_final
+	def transaction_recieve(self,recipient_start,amount):
+		recipient_final=recipient_start+amount
+		return recipient_final
+	def commit_transaction(self,sender,recipient,currency,sender_final,recipient_final):
 		if currency=='USD':
 			sender.dollars=sender_final
 			recipient.dollars=recipient_final
@@ -54,10 +57,6 @@ class Wallet(models.Model):
 			sender.local=sender_final
 			recipient.local=recipient_final
 		self.save()
-
-
-
-
 
 
 

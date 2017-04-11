@@ -48,8 +48,13 @@ def transfer(request):
 		# sender.transaction()
 		# recipient.transaction()
 		send_start,recieve_start = sender.grab_values(sender,recipient,currency)
-		if sender.transaction(sender,recipient,send_start,recieve_start,transferamnt,currency) == "Insufficient Funds":
+		if sender.transaction_send(send_start,transferamnt) == "Insufficient Funds":
 			return render(request,'insufficient.html')
+		else:
+			send_final=sender.transaction_send(send_start,transferamnt)
+		recip_final=recipient.transaction_recieve(recieve_start,transferamnt)
+		sender.commit_transaction(sender,recipient,currency,send_final,recip_final)
+		recipient.commit_transaction(sender,recipient,currency,send_final,recip_final)
 
 		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency, 'test':sender})
 	return render(request,'transfer.html',{'form':transfer,})
