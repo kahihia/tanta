@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'dashboard',
     'community',
     'wallet',
+    'actstream',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+ACTSTREAM_SETTINGS ={
+    'MANAGER': 'wallet.managers.MyActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': False,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 ROOT_URLCONF = 'Tanta.urls'
 
