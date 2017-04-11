@@ -1,5 +1,4 @@
 {% extends "wallet/base.html" %}
-{% load activity_tags %}
 {% load staticfiles %}
 {% block content %}
 
@@ -7,10 +6,13 @@
 </div>
 <div class='container'>
 <div class="jumbotron">
-{% activity_stream 'user' activity %}
-{% for action in stream %}
-    {% display_action action %}
-{% endfor %}
+{{transactions}}
+{% if user.username in transactions %}
+<h3>you sent {{transactions.reciever}}  {{transactions.amount}}</h3>
+    
+
+{% endif %}
+   
 <h2>Your current balances are:</h2>
 <br>
 <ul>

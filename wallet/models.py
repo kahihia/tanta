@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 # Create your models here.
 currencies=(
 	('USD','United States Dollar'),
@@ -61,3 +62,20 @@ class Wallet(models.Model):
 
 	def __str__(self):
 		return str(self.user)
+
+class TransactionsManager(models.Manager):
+	def save_record(self,sender,reciever,amount, currency):
+		self.create(sender=sender,reciever=reciever,amount=amount,currency=currency,transfer_date=timezone.now())
+
+class Transactions(models.Model):
+	sender=models.CharField(max_length=13)
+	reciever=models.CharField(max_length=13)
+	amount=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	currency=models.CharField(max_length=5,null=True)
+	transfer_date=models.DateTimeField(default=timezone.now)
+	objects=TransactionsManager()
+
+	def __str__(self):
+		return str(self.sender) + " " +str(self.amount) +str(self.currency) + " " +str(self.reciever)
+
+	

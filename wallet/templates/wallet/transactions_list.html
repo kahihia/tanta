@@ -1,0 +1,14 @@
+{% extends "wallet/base.html" %}
+{% block content %}
+    
+    	<div class='container'>
+    	{% for transfer in transactions_list %}
+    {% if user.username == transfer.sender %}
+    <h3>Sent {{ transfer.reciever}} {{transfer.amount}} on {{transfer.transfer_date|date:'M d, Y P e'}} </h3> 
+    {% else %}
+     <h3>Recieved {{transfer.amount}} from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}
+    {% endif %}
+     {% endfor %}
+    	</div>
+   
+{% endblock content %}
