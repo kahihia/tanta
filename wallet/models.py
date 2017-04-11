@@ -34,17 +34,16 @@ class Wallet(models.Model):
 			recipient_start=recipient.local
 		return sender_start, recipient_start
 	
-	def transaction(self,sender_start,recipient_start,amount):
+	def transaction(self,sender,recipient,sender_start,recipient_start,amount,currency):
 		if sender_start < amount:
 			return "Insufficient Funds"
 		else:
 			recipient_final=recipient_start + amount
 			sender_final=sender_start - amount
-		return recipient_final,sender_final
-	def save_transaction(self,sender,recipient,sender_final,recipient_final,currency):
+		
 		if currency=='USD':
-				sender.dollars=sender_final
-				recipient.dollars=recipient_final
+			sender.dollars=sender_final
+			recipient.dollars=recipient_final
 		elif currency=='EUR':
 			sender.euros=sender_final
 			recipient.euros=recipient_final
@@ -54,8 +53,8 @@ class Wallet(models.Model):
 		elif currency=='GHC':
 			sender.local=sender_final
 			recipient.local=recipient_final
-			print(sender.dollars)
 		self.save()
+
 
 
 

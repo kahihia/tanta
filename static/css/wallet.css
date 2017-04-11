@@ -12,6 +12,11 @@ body{
   margin: auto;
   padding: auto;
 }
+img{
+  height: 42px;
+  width: 42px;
+
+}
 h2{
   color: #0f1319;
 }

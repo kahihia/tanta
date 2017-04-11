@@ -1,16 +1,20 @@
 {% extends "wallet/base.html" %}
+{% load staticfiles %}
 {% block content %}
 
 <div class='container-welcome'><strong><h1>Welcome, {{user.username}}!</h1></strong>
 </div>
 <div class='container'>
 <div class="jumbotron">
-<h2>Your current balance is:</h2>
+<h2>Your current balances are:</h2>
 <br>
-<h1>{{user.wallet.dollars}}</h1><p>USD</p>
-<h1>{{user.wallet.euros}}</h1><p>EUR</p>
-<h1>{{user.wallet.pounds}}</h1><p>GBP</p>
-<h1>{{user.wallet.local}}</h1><p>GHC</p>
+<ul>
+<h1>{{user.wallet.dollars}}</h1><img src="{% static 'images/us.png' %}" height="42" width="42">
+<h1>{{user.wallet.euros}}</h1><img src="{% static 'images/euro.png' %}" height="42" width="42">
+<h1>{{user.wallet.pounds}}</h1><img src="{% static 'images/uk.png' %}" height="42" width="42">
+<h1>{{user.wallet.local}}</h1><img src="{% static 'images/ghana.ico' %}" height="42" width="42">
+</ul>
+<br>
 <br>
 <a class="btn btn-success btn-lrg" href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
 

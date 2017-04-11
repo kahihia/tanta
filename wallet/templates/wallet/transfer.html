@@ -12,19 +12,17 @@
 	<h1>TantaPay Transfer</h1>
 </div>
 <div class="container">
-<h2>Your balance is:</h2>
+<h2>Your balances are:</h2>
 <h3>{{user.wallet.dollars}}</h3><p>USD</p>
 <h3>{{user.wallet.euros}}</h3><p>EUR</p>
 <h3>{{user.wallet.pounds}}</h3><p>GBP</p>
 <h3>{{user.wallet.local}}</h3><p>GHC</p>
-<br>
 <br>
 <form method='post'>
 {% csrf_token %}
 	
 	{{ form.as_p }}
 
-	<br>
 
 	<input type="submit" class="btn btn-primary" value="Transfer">
 	<br>
