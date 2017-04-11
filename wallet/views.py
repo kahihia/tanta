@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q,F
 from django.http import HttpResponse
 from django import forms
+from decimal import *
 
 # Create your views here.
 def wallet_summary(request):
@@ -19,7 +20,7 @@ def transfer(request):
 	if request.method=='POST':
 		transfer =TransferForm(request.POST)
 		if transfer.is_valid():
-			transferamnt=float(transfer['amount'].value())
+			transferamnt=Decimal(transfer['amount'].value())
 			recipient=transfer['user'].value()
 			currency=transfer['currency'].value()
 			try:

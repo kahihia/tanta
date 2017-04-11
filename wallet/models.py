@@ -12,10 +12,10 @@ currencies=(
 
 class Wallet(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-	dollars=models.FloatField(default=0)
-	euros=models.FloatField(default=0)
-	pounds=models.FloatField(default=0)
-	local=models.FloatField(default=0)
+	dollars=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	euros=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	pounds=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	local=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 
 	
 ###### WRITE METHODS FOR TRANSACTIONS: EG VERIFY USER, CHECK AMOUNT, ETC. #####
