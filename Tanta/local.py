@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'dashboard',
     'community',
     'wallet',
+    'actstream',
 ]
 
 MIDDLEWARE = [
