@@ -2,14 +2,22 @@
 {% block content %}
     	<div class="container">
     	<div class='jumbotron'>
+    	<div class='container'>
     	{% for transfer in transactions_list %}
     {% if user.username == transfer.sender %}
-    <h3>Sent {{ transfer.reciever}} {{transfer.amount}} {{transfer.currency}} on {{transfer.transfer_date|date:'M d, Y P e'}} </h3> 
+    <div class="row">
+    <div class="col"><h3>Sent {{transfer.reciever}} {{transfer.amount}} {{transfer.currency}}</h3>on {{transfer.transfer_date|date:'M d, Y P e'}}</div></div>
     {% else %}
-     <h3><strong>Recieved</strong> {{transfer.amount}} {{transfer.currency}} from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}</h3>
+    <div class="row">
+    <div class="col">
+     <h3><strong>Recieved</strong> {{transfer.amount}} {{transfer.currency}}</h3> from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}</div>
+     </div>
     {% endif %}
      {% endfor %}
     	</div>
     	</div>
+    	</div>
    
 {% endblock content %}
+{% block activity %}    
+{% endblock activity %}

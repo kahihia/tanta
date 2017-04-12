@@ -6,13 +6,7 @@
 </div>
 <div class='container'>
 <div class="jumbotron">
-{{transactions}}
-{% if user.username in transactions %}
-<h3>you sent {{transactions.reciever}}  {{transactions.amount}}</h3>
-    
 
-{% endif %}
-   
 <h2>Your current balances are:</h2>
 <br>
 <ul>
@@ -21,6 +15,7 @@
 <h2>{{user.wallet.pounds}}</h2><img src="{% static 'images/uk.png' %}" height="42" width="42">
 <h2>{{user.wallet.local}}</h2><img src="{% static 'images/ghana.ico' %}" height="42" width="42">
 </ul>
+<!-- {% include 'wallet/transactions_list.html' %} -->
 <br>
 <br>
 <a class="btn btn-success btn-lrg" href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
