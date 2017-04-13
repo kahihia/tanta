@@ -29,7 +29,7 @@ WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 CSRF_COOKIE_SECURE=True
 SESSION_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS=30
@@ -38,13 +38,12 @@ SECURE_BROWSER_XSS_FILTER=True
 X_FRAME_OPTIONS='DENY'
 
 # CELERY STUFF
-CELERY_TASK_SERIALIZERBROKER_URL = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
-CELERY_RESULT_BACKEND = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
+CELERY_BROKER_URL = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
+CELERY_RESULT_BACKEND = 'rredis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
-
 
 ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
