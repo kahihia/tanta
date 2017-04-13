@@ -1,14 +1,17 @@
 appdirs==1.4.3
 argon2-cffi==16.3.0
 bcrypt==3.1.3
+celery==3.1.0
 cffi==1.10.0
 Django==1.11
 django-activity-stream==0.6.3
 gunicorn==19.7.0
 olefile==0.44
+openexchangerates==0.1.1
 packaging==16.8
 Pillow==4.0.0
 pycparser==2.17
 pyparsing==2.2.0
+redis==2.10.5
 six==1.10.0
 whitenoise==3.3.0

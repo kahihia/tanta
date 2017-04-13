@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'community',
     'wallet',
     'actstream',
-    'django_celery_results',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
