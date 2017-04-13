@@ -34,7 +34,7 @@ def transfer(request):
 		try:
 			send_start,recieve_start = sender.grab_values(sender,recipient,currency)
 		except:
-			return render(request, 'invalid_user.html')
+			return render(request, 'self_send_error.html')
 
 		if sender.transaction_send(send_start,transferamnt) == "Insufficient Funds":
 			return render(request,'insufficient.html')

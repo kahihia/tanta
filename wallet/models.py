@@ -8,7 +8,7 @@ currencies=(
 	('USD','United States Dollar'),
 	('GBP','British Pound'),
 	('EUR','Euro'),
-	('GHC','Ghanaian Cedi'),)
+	('GHS','Ghanaian Cedi'),)
 
 class Wallet(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -16,6 +16,7 @@ class Wallet(models.Model):
 	euros=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	pounds=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	local=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+
 
 	
 ###### WRITE METHODS FOR TRANSACTIONS: EG VERIFY USER, CHECK AMOUNT, ETC. #####
@@ -31,9 +32,12 @@ class Wallet(models.Model):
 		elif currency=='GBP':
 			sender_start=sender.pounds
 			recipient_start=recipient.pounds
-		elif currency=='GHC':
+		elif currency=='GHS':
 			sender_start=sender.local
 			recipient_start=recipient.local
+			sender_start=sender.currency
+			recipient_start=recipient.currency
+
 		return sender_start, recipient_start
 	
 	def transaction_send(self,sender_start,amount):
@@ -63,7 +67,7 @@ class Wallet(models.Model):
 
 
 	def __str__(self):
-		return str(self.user)
+		return str(self.user) + str(self.user.id)
 
 class TransactionsManager(models.Manager):
 	def save_record(self,sender,reciever,amount, currency):
@@ -80,4 +84,24 @@ class Transactions(models.Model):
 	def __str__(self):
 		return str(self.sender) + " " +str(self.amount) +str(self.currency) + " " +str(self.reciever)
 
-	
+		
+
+class ForexRates(models.Model):
+	date=models.DateTimeField(default=timezone.now)
+	dollars=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	euros=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	pounds=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	cedis=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	shillings=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	pesos=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	naira=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	swkrone=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	nwkrone=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	indrp=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	chny=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	ausd=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	saud=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	rurub=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+
+	def __str__(self):
+		return str(self.date)

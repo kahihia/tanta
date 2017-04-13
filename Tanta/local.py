@@ -38,6 +38,15 @@ DEBUG = True
 # X_FRAME_OPTIONS='DENY'
 ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
+# CELERY STUFF
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Nairobi'
+
+
 
 # Application definition
 
@@ -53,6 +62,7 @@ INSTALLED_APPS = [
     'community',
     'wallet',
     'actstream',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
