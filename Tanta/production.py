@@ -40,8 +40,8 @@ X_FRAME_OPTIONS='DENY'
 ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
 # CELERY STUFF
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
+CELERY_RESULT_BACKEND = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
