@@ -1,0 +1,40 @@
+body{
+	margin: auto;
+	padding: 15px;
+	font-family:'News Cycle', sans-serif;
+  font-weight: 600;
+  float:auto;
+  background-size: auto, auto;
+  background-image: url("https://c1.staticflickr.com/8/7594/27394500802_36177d746d_h.jpg");
+  background-repeat: no-repeat;
+}
+
+.jumbotron{
+  opacity: 0.8;
+}
+h2{
+  color: #e0e2e5;
+}
+#navlist{
+  font-size: 20px;
+}
+p{
+  color: #1e232b;
+}
+sub{
+  color: #1e232b;
+
+}
+header {
+  padding: 10px;
+  font-family: "adelle-sans";
+  background-color: #18b2f4;
+  margin:auto;
+  font-style: normal;
+  font-weight: 600;
+  color: #700;
+  width: 100%;
+}
+nav{
+  margin: 10px;
+}

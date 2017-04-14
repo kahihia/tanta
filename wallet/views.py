@@ -14,10 +14,9 @@ from django.db.models.signals import post_save
 from actstream import action
 from actstream.models import user_stream
 from django.db.models import Q
-
 # Create your views here.
 def wallet_summary(request):
-	return render(request,'wallet/wallet_summary.html',)
+	return render(request,'wallet_summary.html',)
 def transfer(request):
 	transfer = TransferForm()
 	sender=Wallet.objects.get(user=request.user)

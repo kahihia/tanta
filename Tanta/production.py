@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+import logging, logging.config
+import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_dir=os.path.join(BASE_DIR,"templates")
@@ -19,7 +20,7 @@ STATIC_DIR=os.path.join(BASE_DIR,"static")
 MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
-WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates")
+WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
 WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 
 # Quick-start development settings - unsuitable for production
@@ -30,24 +31,51 @@ SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-CSRF_COOKIE_SECURE=True
+# CSRF_COOKIE_SECURE=True
 # SESSION_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS=30
 SECURE_CONTENT_TYPE_NOSNIFF=True
 SECURE_BROWSER_XSS_FILTER=True
 X_FRAME_OPTIONS='DENY'
+ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
 
 # CELERY STUFF
-CELERY_BROKER_URL = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
-CELERY_RESULT_BACKEND = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
-ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost',]
+# LOGGING 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
 
-
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+     'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -59,10 +87,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home_page',
     'dashboard',
-    'community',
     'wallet',
     'actstream',
-    ]
+    'django_celery_results'
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,7 +117,7 @@ ROOT_URLCONF = 'Tanta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_dir, WALLET_DIR, COMMUNITY_DIR,],
+        'DIRS': [TEMPLATE_dir, COMMUNITY_DIR, WALLET_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
