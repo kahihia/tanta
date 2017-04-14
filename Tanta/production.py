@@ -30,14 +30,14 @@ WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
 SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # CSRF_COOKIE_SECURE=True
 # SESSION_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS=30
 SECURE_CONTENT_TYPE_NOSNIFF=True
 SECURE_BROWSER_XSS_FILTER=True
 X_FRAME_OPTIONS='DENY'
-ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
+ALLOWED_HOSTS = ["tantapay.herokuapp.com",'localhost']
 
 # CELERY STUFF
 CELERY_BROKER_URL = 'redis://h:p2b92ec2311288bb3b312279e453deaf8958a61d621e8f026029d7a9ce9629787@ec2-34-206-56-227.compute-1.amazonaws.com:38849'
