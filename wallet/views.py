@@ -56,3 +56,7 @@ class RecentActivityView(ListView):
 	def get_queryset(self):
 		# user=request.user
 		return Transactions.objects.filter(Q(sender=self.request.user,transfer_date__lte=timezone.now()) | Q(reciever=self.request.user,transfer_date__lte=timezone.now())).order_by('transfer_date')
+
+
+def forex(request):
+	return render(request,'forex.html')
