@@ -19,7 +19,7 @@ STATIC_DIR=os.path.join(BASE_DIR,"static")
 MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
-WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
+WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates")
 WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 
 # Quick-start development settings - unsuitable for production
@@ -88,7 +88,7 @@ ROOT_URLCONF = 'Tanta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_dir, COMMUNITY_DIR, WALLET_DIR,],
+        'DIRS': [TEMPLATE_dir, WALLET_DIR, COMMUNITY_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

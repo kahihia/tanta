@@ -17,7 +17,7 @@ from django.db.models import Q
 
 # Create your views here.
 def wallet_summary(request):
-	return render(request,'wallet_summary.html',)
+	return render(request,'wallet/wallet_summary.html',)
 def transfer(request):
 	transfer = TransferForm()
 	sender=Wallet.objects.get(user=request.user)

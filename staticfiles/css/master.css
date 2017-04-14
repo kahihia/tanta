@@ -21,8 +21,9 @@ h2{
 p{
   color: #1e232b;
 }
-#form{
-  color: #e0e2e5;
+sub{
+  color: #1e232b;
+
 }
 header {
   padding: 10px;
@@ -33,4 +34,7 @@ header {
   font-weight: 600;
   color: #700;
   width: 100%;
+}
+nav{
+  margin: 10px;
 }
