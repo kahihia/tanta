@@ -7,14 +7,13 @@
 <div class='container'>
 <div class="jumbotron">
 
-<h2>Your current balances are:</h2>
-<br>
-<ul>
-<h2>{{user.wallet.dollars}}</h2><img src="{% static 'images/us.png' %}" height="42" width="42">
-<h2>{{user.wallet.euros}}</h2><img src="{% static 'images/euro.png' %}" height="42" width="42">
-<h2>{{user.wallet.pounds}}</h2><img src="{% static 'images/uk.png' %}" height="42" width="42">
-<h2>{{user.wallet.local}}</h2><img src="{% static 'images/ghana.ico' %}" height="42" width="42">
-</ul>
+<div class="row">
+<h2>Your balances are:</h2>
+<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+</div>
 <!-- {% include 'wallet/transactions_list.html' %} -->
 <br>
 <br>

@@ -9,6 +9,9 @@ class TransferForm(forms.Form):
 	user=forms.IntegerField(label='',
 		widget=forms.NumberInput(attrs={'placeholder':"Enter recipient's id"}))
 
-class TForm(forms.ModelForm):
-	model=Wallet
-	fields=('dollars','euros','pounds','local')
+class ForexForm(forms.Form):
+	amount=forms.DecimalField(min_value=0,decimal_places=2,label='',
+		widget=forms.NumberInput(attrs={'placeholder':'Exchange Amount'}))
+	currency_want=forms.ChoiceField(currencies,label='')
+	currency_have=forms.ChoiceField(currencies,label='')
+	

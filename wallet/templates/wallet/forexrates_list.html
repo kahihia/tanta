@@ -1,0 +1,14 @@
+{% extends "wallet/base.html" %}
+{% load static %}
+{% block content %}
+<div class='container'>
+<h2>Base currency: USD</h2>
+{% for rate in forexrates_list %}
+<div class='row'>
+<div class=col-md-3><h2>{{rate.dollars}}</h2><img src="{% static 'images/us.png' %}"></div>
+<div class=col-md-3><h2>{{rate.euros}}</h2><img src="{% static 'images/euro.png' %}"></div>
+<div class=col-md-3><h2>{{rate.pounds}}</h2><img src="{% static 'images/uk.png' %}"></div>
+<div class=col-md-3><h2>{{rate.cedis}}</h2><img src="{% static 'images/ghana.ico' %}"></div>
+{% endfor %}
+
+{% endblock content %}

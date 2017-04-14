@@ -35,10 +35,20 @@ class Wallet(models.Model):
 		elif currency=='GHS':
 			sender_start=sender.local
 			recipient_start=recipient.local
-			sender_start=sender.currency
-			recipient_start=recipient.currency
 
 		return sender_start, recipient_start
+
+	def grab_forex(self,user,currency):
+		if currency=='USD':
+				user_start=user.dollars
+		elif currency=='EUR':
+			user_start=user.euros
+		elif currency=='GBP':
+			user_start=user.pounds
+		elif currency=='GHS':
+			user_start=user.local
+		return user_start
+
 	
 	def transaction_send(self,sender_start,amount):
 		if sender_start < amount:
@@ -102,6 +112,22 @@ class ForexRates(models.Model):
 	ausd=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	saud=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	rurub=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+
+	def grab_exchange_currency(self,currency):
+		if currency=='USD':
+				rate=self.dollars
+		elif currency=='EUR':
+			rate=self.euros
+		elif currency=='GBP':
+			rate=self.pounds
+		elif currency=='GHS':
+			rate=self.cedis
+		return rate
+
+	def function():
+		pass
+
+
 
 	def __str__(self):
 		return str(self.date)

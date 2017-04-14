@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
-from wallet.models import Wallet,Transactions
-from wallet.forms import TransferForm
+from wallet.models import Wallet,Transactions,ForexRates
+from wallet.forms import TransferForm,ForexForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -59,4 +59,20 @@ class RecentActivityView(ListView):
 
 
 def forex(request):
-	return render(request,'forex.html')
+	user=Wallet.objects.get(user=request.user)
+	tanta_fx=Wallet.objects.get(user=9)
+	forex=ForexForm()
+	if request.method=='POST':
+		forex=ForexForm(request.POST)
+		if forex.is_valid():
+			  pass
+			
+	return render(request,'forex.html',{'form2':forex})
+
+class ForexRatesView(ListView):
+	model = ForexRates
+
+	def get_queryset(self):
+		return ForexRates.objects.filter(date__lte=timezone.now()).order_by('date')
+
+

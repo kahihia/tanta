@@ -1,11 +1,40 @@
 {% extends "wallet/base.html" %}
+{% load static %}
 {% block content %}
 <div class='container'>
 	<div class='jumbotron'>
-		<h2> I have:</h2>
-		<br>
-		<h2>I want:</h2>
+	<div class="row">
+<h2>Your balances are:</h2>
+<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+</div>
+<br>
+  <a href="{% url 'wallet:rates' %}" class="btn btn-default btn-sm">See Rates <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></a></span>
+
+<div class='container'>	
+ <div class='row'>
+   <div class='col-md-4'>
+   <h3>I want to exchange:</h3>
+   </div>
+	<div class='col-md-4'>
+	<h3>For:</h3>
 	</div>
 </div>
-    
+</div>
+<div class='container'>
+		<form method='post'>
+{% csrf_token %}
+<div class="row">
+
+		{{form2.as_table}}
+</div>
+		<br>
+		<br>
+	<input type="submit" class="btn btn-success" value="Exchange">
+	</form>
+	</div>
+</div>
+    </div>
 {% endblock content %}

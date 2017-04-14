@@ -7,16 +7,30 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/transfer.css' %}">
 	<title>Transfer</title>
 </head>
+<nav class="navbar navbar-default">
+<div class="navbar-header">
+</div>
+	<ul id=navlist class="nav navbar-nav">
+			
+		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:activity' %}">Activity</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
+		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
+		</ul>
+		</nav>
 <body>
 <div class="page-header">
 	<h1>TantaPay Transfer</h1>
 </div>
 <div class="container">
+<div class="row">
 <h2>Your balances are:</h2>
-<h3>{{user.wallet.dollars}}</h3><p>USD</p>
-<h3>{{user.wallet.euros}}</h3><p>EUR</p>
-<h3>{{user.wallet.pounds}}</h3><p>GBP</p>
-<h3>{{user.wallet.local}}</h3><p>GHC</p>
+<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
+<div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+</div>
 <br>
 <form method='post'>
 {% csrf_token %}

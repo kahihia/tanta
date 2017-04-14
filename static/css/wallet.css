@@ -15,12 +15,17 @@ body{
   background: #d0d3cf;
   
 }
+.container{
+  display:flex;
+  align-content: center;
+}
 
 img{
   height: 42px;
   width: 42px;
 
 }
+
 h2{
   color: #0f1319;
 }
