@@ -89,7 +89,6 @@ INSTALLED_APPS = [
     'dashboard',
     'wallet',
     'actstream',
-    'django_celery_results'
 ]
 
 
