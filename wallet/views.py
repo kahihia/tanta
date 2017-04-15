@@ -61,11 +61,41 @@ class RecentActivityView(ListView):
 def forex(request):
 	user=Wallet.objects.get(user=request.user)
 	tanta_fx=Wallet.objects.get(user=9)
+	rates=ForexRates.objects.get(date__lte=timezone.now())
 	forex=ForexForm()
 	if request.method=='POST':
 		forex=ForexForm(request.POST)
 		if forex.is_valid():
-			  pass
+			currency_want=forex['currency_want'].value()
+			currency_have=forex['currency_have'].value()
+			amount=Decimal(forex['amount'].value())
+# GRAB THE CURRENCY THAT THE USER HAS USING WALLET MODEL
+			user_start_have=user.grab_forex(user,currency_have)
+			forex_start_have=tanta_fx.grab_forex(tanta_fx,currency_have)
+			user_start_want=user.grab_forex(user,currency_want)
+			forex_start_want=tanta_fx.grab_forex(tanta_fx,currency_want)
+
+# SUBTRACT THE AMOUNT THAT THE USER WANTS TO EXCHANGE FROM THEIR WALLET 
+#AND INTO FOREX WALLET USING WALLET MODEL
+			if user.transaction_send(user_start_have,amount)=='Insufficient Funds':
+				return render(request,'insufficient.html')
+			else:
+				user_get=user.transaction_send(user_start_have,amount)
+				forex_get=tanta_fx.transaction_recieve(forex_start_have,amount)
+				user.commit_forex(user,currency_have,user_get)
+				tanta_fx.commit_forex(tanta_fx,currency_have,forex_get)
+		# CONVERT TRANSFER CURRENCY INTO DOLLARS 
+			curr_dollar=rates.convert_currency_to_dollar(currency_have,amount)
+		#AND THEN INTO WANTED CURRENCY
+			final_currency=round(rates.convert_currency_from_dollar(currency_want,curr_dollar),2)
+		# ADD TRANSFERED FUNDS FROM FOREX WALLET INTO USER WALLET
+			forex_final=tanta_fx.transaction_send(forex_start_want,final_currency)
+			user_final=user.transaction_recieve(user_start_want,final_currency)
+			user.commit_forex(user,currency_want,user_final)
+			tanta_fx.commit_forex(tanta_fx,currency_want,forex_final)
+			
+			return render(request, 'forex_thanks.html',{'test':final_currency})
+
 			
 	return render(request,'forex.html',{'form2':forex})
 

@@ -47,6 +47,9 @@ sub{
   color: #1e232b;
 
 }
+#fxbtn{
+  margin-left: 25px;
+}
 .container-welcome{
   padding: auto;
   margin: auto;

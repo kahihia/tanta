@@ -12,6 +12,6 @@ class TransferForm(forms.Form):
 class ForexForm(forms.Form):
 	amount=forms.DecimalField(min_value=0,decimal_places=2,label='',
 		widget=forms.NumberInput(attrs={'placeholder':'Exchange Amount'}))
-	currency_want=forms.ChoiceField(currencies,label='')
 	currency_have=forms.ChoiceField(currencies,label='')
+	currency_want=forms.ChoiceField(currencies,label='')
 	

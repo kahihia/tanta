@@ -56,9 +56,11 @@ class Wallet(models.Model):
 		else:
 			sender_final=sender_start - amount
 		return sender_final
+	
 	def transaction_recieve(self,recipient_start,amount):
-		recipient_final=recipient_start+amount
+		recipient_final=recipient_start + amount
 		return recipient_final
+	
 	def commit_transaction(self,sender,recipient,currency,sender_final,recipient_final):
 		if currency=='USD':
 			sender.dollars=sender_final
@@ -69,9 +71,20 @@ class Wallet(models.Model):
 		elif currency=='GBP':
 			sender.pounds=sender_final
 			recipient.pounds=recipient_final
-		elif currency=='GHC':
+		elif currency=='GHS':
 			sender.local=sender_final
 			recipient.local=recipient_final
+		self.save()
+
+	def commit_forex(self,user,currency,user_amount):
+		if currency=='USD':
+			user.dollars=user_amount
+		elif currency=='EUR':
+			user.euros=user_amount
+		elif currency=='GBP':
+			user.pounds=user_amount
+		elif currency=='GHS':
+			user.local=user_amount
 		self.save()
 
 
@@ -115,18 +128,36 @@ class ForexRates(models.Model):
 
 	def grab_exchange_currency(self,currency):
 		if currency=='USD':
-				rate=self.dollars
+				curr_return=self.dollars
 		elif currency=='EUR':
-			rate=self.euros
+			curr_return=self.euros
 		elif currency=='GBP':
-			rate=self.pounds
+			curr_return=self.pounds
 		elif currency=='GHS':
-			rate=self.cedis
-		return rate
+			curr_return=self.cedis
+		return curr_return
 
-	def function():
-		pass
+	def convert_currency_to_dollar(self,currency_have,amount):
+		if currency_have=='USD':
+				curr_dollar=(1/self.dollars)*amount
+		elif currency_have=='EUR':
+			curr_dollar=(1/self.euros)*amount
+		elif currency_have=='GBP':
+			curr_dollar=(1/self.pounds)*amount
+		elif currency_have=='GHS':
+			curr_dollar=(1/self.cedis)*amount
+		return curr_dollar
 
+	def convert_currency_from_dollar(self,currency_want,curr_dollar):
+		if currency_want=='USD':
+				final_amount=(self.dollars)*curr_dollar
+		elif currency_want=='EUR':
+			final_amount=(self.euros)*curr_dollar
+		elif currency_want=='GBP':
+			final_amount=(self.pounds)*curr_dollar
+		elif currency_want=='GHS':
+			final_amount=(self.cedis)*curr_dollar
+		return final_amount
 
 
 	def __str__(self):
