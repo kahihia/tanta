@@ -13,11 +13,5 @@ class NewLead(models.Model):
 class UserProfileInfo(models.Model):
 	user=models.OneToOneField(User)
 
-	
-
-	#additional
-
-	profile_pic=models.ImageField(upload_to='profile_pic',blank=True)
-
 	def __str__(self):
 		return self.user.username

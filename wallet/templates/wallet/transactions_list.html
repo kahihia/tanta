@@ -4,9 +4,16 @@
     	{% for transfer in transactions_list %}
     {% if user.username == transfer.sender %}
     <div class="order-0"><h3>Sent {{transfer.reciever}} {{transfer.amount}} {{transfer.currency}}</h3>on {{transfer.transfer_date|date:'M d, Y P e'}}</div>
-    {% else %}
+    {% elif user.username == transfer.reciever %}
     <div class="order-1">
      <h3><strong>Recieved</strong> {{transfer.amount}} {{transfer.currency}}</h3> from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}</div>
+    {% elif user.username == transfer.fx %}
+    <div class='order-2'>
+    	<h3>You changed {{transfer.amount}} {{transfer.currency}}</h3>
+    	to {{transfer.changed_amount}} {{transfer.changed_currency}} on {{transfer.transfer_date|date:'M d, Y P'}}
+    </div>
+        
+    
     {% endif %}
      {% endfor %}
      </div>

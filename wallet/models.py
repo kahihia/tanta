@@ -90,19 +90,31 @@ class Wallet(models.Model):
 
 
 	def __str__(self):
-		return str(self.user) + str(self.user.id)
+		return str(self.user)
 
 class TransactionsManager(models.Manager):
 	def save_record(self,sender,reciever,amount, currency):
-		self.create(sender=sender,reciever=reciever,amount=amount,currency=currency,transfer_date=timezone.now())
+		self.create(sender=sender,user='',reciever=reciever,amount=amount,currency=currency,transfer_date=timezone.now())
+	def save_forex(self,fx,amount,currency,changed_amount,changed_currency):
+		self.create(sender='', fx=fx,reciever='FX',amount=amount,currency=currency,changed_amount=changed_amount,
+			changed_currency=changed_currency,transfer_date=timezone.now())
+
 
 class Transactions(models.Model):
 	sender=models.CharField(max_length=13)
+	fx=models.CharField(max_length=13,null=True)
 	reciever=models.CharField(max_length=13)
 	amount=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	changed_amount=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	currency=models.CharField(max_length=5,null=True)
+	changed_currency=models.CharField(max_length=5,null=True)
 	transfer_date=models.DateTimeField(default=timezone.now)
 	objects=TransactionsManager()
+
+	class Meta:
+		get_latest_by='transfer_date'
+
+			
 
 	def __str__(self):
 		return str(self.sender) + " " +str(self.amount) +str(self.currency) + " " +str(self.reciever)

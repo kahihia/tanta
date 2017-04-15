@@ -52,10 +52,8 @@ def info(request):
 	return render(request,'info.html')
 class RecentActivityView(ListView):
 	model = Transactions
-
 	def get_queryset(self):
-		# user=request.user
-		return Transactions.objects.filter(Q(sender=self.request.user,transfer_date__lte=timezone.now()) | Q(reciever=self.request.user,transfer_date__lte=timezone.now())).order_by('transfer_date')
+		return Transactions.objects.filter(Q(sender=self.request.user,transfer_date__lte=timezone.now()) | Q(reciever=self.request.user,transfer_date__lte=timezone.now()) | Q(fx=self.request.user,transfer_date__lte=timezone.now())).order_by('-transfer_date')
 
 
 def forex(request):
@@ -93,6 +91,8 @@ def forex(request):
 			user_final=user.transaction_recieve(user_start_want,final_currency)
 			user.commit_forex(user,currency_want,user_final)
 			tanta_fx.commit_forex(tanta_fx,currency_want,forex_final)
+
+			Transactions.objects.save_forex(user,amount,currency_have,final_currency,currency_want)
 			
 			return render(request, 'forex_thanks.html',{'test':final_currency})
 
