@@ -1,3 +1,6 @@
+.col-md-3 {
+  padding-left: 0;
+}
 body{
 	margin: auto;
 	padding: auto;
@@ -23,7 +26,6 @@ body{
 img{
   height: 42px;
   width: 42px;
-
 }
 
 h2{
