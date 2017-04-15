@@ -2,6 +2,7 @@
 {% load static %}
 <html>
 <head>
+<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Catamaran:800" rel="stylesheet"> 
 
@@ -27,6 +28,8 @@
 	<h1>TantaPay Transfer</h1>
 </div>
 <div class="container">
+<div class="m2 p2 bg-gray">
+<div class="m2 p2 bg-silver">
 <div class="row">
 <h2>Your balances are:</h2>
 <div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
@@ -34,7 +37,7 @@
 <div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
 <div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
 </div>
-<br>
+<div class="p2">
 <form method='post'>
 {% csrf_token %}
 	
@@ -44,6 +47,9 @@
 	<input type="submit" class="btn btn-primary" value="Transfer">
 	<br>
 </form>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

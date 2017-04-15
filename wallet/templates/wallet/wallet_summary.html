@@ -2,11 +2,13 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class='container-welcome'><h1>Welcome, {{user.username}}!</h1>
+<div class='flex justify-center'>
+<div class='p2 m4-center'>
+<h1>Welcome, {{user.username}}!</h1>
 </div>
-<div class='container'>
+</div>
+<di class='container'>
 <div class="jumbotron">
-
 <div class="row">
 <h2>Your balances are:</h2>
 <div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
@@ -18,7 +20,7 @@
 <br>
 <br>
 <a class="btn btn-success btn-lrg" href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
+</div>
+</div>
 
-</div>
-</div>
 {% endblock content %}

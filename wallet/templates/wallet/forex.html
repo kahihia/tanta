@@ -13,17 +13,12 @@
 <br>
   <a href="{% url 'wallet:rates' %}" class="btn btn-default btn-sm">See Rates <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></a></span>
 
-<div class='container'>	
- <div class='row'>
-   <div class='col-md-3'>
+ <div class='flex justify-around'>
    <h3>I want to exchange:</h3>
-   </div>
-	<div class='col-md-4'>
+   <div class="flex justify-end">
 	<h3>For:</h3>
 	</div>
 </div>
-</div>
-<div class='container'>
 		<form method='post'>
 {% csrf_token %}
 <div class="row">
@@ -34,7 +29,6 @@
 		<br>
 	<input type="submit" class="btn btn-success" value="Exchange">
 	</form>
-	</div>
 </div>
     </div>
 {% endblock content %}
