@@ -94,7 +94,7 @@ class Wallet(models.Model):
 
 class TransactionsManager(models.Manager):
 	def save_record(self,sender,reciever,amount, currency):
-		self.create(sender=sender,user='',reciever=reciever,amount=amount,currency=currency,transfer_date=timezone.now())
+		self.create(sender=sender,fx='',reciever=reciever,amount=amount,currency=currency,transfer_date=timezone.now())
 	def save_forex(self,fx,amount,currency,changed_amount,changed_currency):
 		self.create(sender='', fx=fx,reciever='FX',amount=amount,currency=currency,changed_amount=changed_amount,
 			changed_currency=changed_currency,transfer_date=timezone.now())
