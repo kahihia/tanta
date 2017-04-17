@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class='container'>
-	<div class='jumbotron'>
+	<div class="center px2 py2 white bg-gray bg-cover bg-center" style="background: #e5e5e5">
 	<div class="row">
 <h2>Your balances are:</h2>
 <div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
@@ -13,18 +13,22 @@
 <br>
   <a href="{% url 'wallet:rates' %}" class="btn btn-default btn-sm">See Rates <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></a></span>
 
- <div class='flex justify-around'>
+ <div class='flex-auto p2'>
    <h3>I want to exchange:</h3>
-   <div class="flex justify-end">
-	<h3>For:</h3>
-	</div>
+   
 </div>
 		<form method='post'>
 {% csrf_token %}
 <div class="row">
 
-		{{form2.as_table}}
-</div>
+		<div class='p1'>{{form2.amount}}</div>
+		<br>
+		<div class='p1'>{{form2.currency_have}}
+</div></div>
+<div class="flex-auto p2">
+	<h3>For:</h3>
+	</div>
+	{{form2.currency_want}}
 		<br>
 		<br>
 	<input type="submit" class="btn btn-success" value="Exchange">

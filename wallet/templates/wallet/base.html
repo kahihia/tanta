@@ -6,8 +6,10 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" >
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/wallet.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/bss.css' %}">
+<script scr='{% static " js/myscript.js" %}'></script>
 <html>
 <head>
 	<title>
@@ -23,7 +25,6 @@
 		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:transfer' %}">Transfer</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:activity' %}">Activity</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
 		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
 		</ul>

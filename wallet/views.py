@@ -11,7 +11,6 @@ from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from decimal import *
 from django.db.models.signals import post_save
-from actstream import action
 from actstream.models import user_stream
 from django.db.models import Q
 # Create your views here.
@@ -43,19 +42,13 @@ def transfer(request):
 		sender.commit_transaction(sender,recipient,currency,send_final,recip_final)
 		
 		recipient.commit_transaction(sender,recipient,currency,send_final,recip_final)
-		# activity=action.send(request.user,verb='transfered', action_object=Wallet, target=recipient)
 		Transactions.objects.save_record(sender,recipient,transferamnt,currency)
 
 		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency,})
 	return render(request,'transfer.html',{'form':transfer,})
 def info(request):
 	return render(request,'info.html')
-class RecentActivityView(ListView):
-	model = Transactions
-	def get_queryset(self):
-		return Transactions.objects.filter(Q(sender=self.request.user,transfer_date__lte=timezone.now()) | Q(reciever=self.request.user,transfer_date__lte=timezone.now()) | Q(fx=self.request.user,transfer_date__lte=timezone.now())).order_by('-transfer_date')
-
-
+	
 def forex(request):
 	user=Wallet.objects.get(user=request.user)
 	tanta_fx=Wallet.objects.get(user=9)
@@ -98,11 +91,3 @@ def forex(request):
 
 			
 	return render(request,'forex.html',{'form2':forex})
-
-class ForexRatesView(ListView):
-	model = ForexRates
-
-	def get_queryset(self):
-		return ForexRates.objects.filter(date__lte=timezone.now()).order_by('date')
-
-

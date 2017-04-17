@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" >
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/transfer.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bss.css' %}">
 	<title>Transfer</title>
 </head>
 <nav class="navbar navbar-default">
@@ -24,12 +24,11 @@
 		</ul>
 		</nav>
 <body>
-<div class="page-header">
+<div class="center px3 mx4 white bg-gray bg-cover bg-center">
 	<h1>TantaPay Transfer</h1>
 </div>
 <div class="container">
-<div class="m2 p2 bg-gray">
-<div class="m2 p2 bg-silver">
+<div class="center px3 py4 white bg-gray bg-cover bg-center" style='background: #e5e5e5'>
 <div class="row">
 <h2>Your balances are:</h2>
 <div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
@@ -37,14 +36,16 @@
 <div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
 <div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
 </div>
-<div class="p2">
+<div class="p2 m4">
 <form method='post'>
 {% csrf_token %}
-	
-	{{ form.as_p }}
+<ul class="list-reset">
+	<li class="m2">{{form.amount}}</li>
+	<li class="m2">{{form.currency}}</li>
+	<li class="m2">{{form.user}}</li>
+</ul>
 
-
-	<input type="submit" class="btn btn-primary" value="Transfer">
+	<input type="submit" class="h3 p1 btn btn-success" value="Transfer">
 	<br>
 </form>
 </div>

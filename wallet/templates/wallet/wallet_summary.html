@@ -1,5 +1,6 @@
 {% extends "wallet/base.html" %}
 {% load staticfiles %}
+{% load actview %}
 {% block content %}
 
 <div class='flex justify-center'>
@@ -7,8 +8,8 @@
 <h1>Welcome, {{user.username}}!</h1>
 </div>
 </div>
-<di class='container'>
-<div class="jumbotron">
+<div class='container'>
+<div class="center px2 py2 white bg-gray bg-cover bg-center" style='background:#e5e5e5'>
 <div class="row">
 <h2>Your balances are:</h2>
 <div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
@@ -16,13 +17,7 @@
 <div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
 <div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
 </div>
-<!-- {% include 'wallet/transactions_list.html' %} -->
-<br>
-<br>
-<a class="btn btn-success btn-lrg" id='fxbtn' href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
-<a class="btn btn-success btn-lrg" id='fxbtn' href="{% url 'wallet:forex' %}" role="button">Currency Exchange</a>
-
-</div>
+{% show_activity %}
 </div>
 
 {% endblock content %}
