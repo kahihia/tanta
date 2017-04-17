@@ -33,8 +33,9 @@ class UserForm(forms.ModelForm):
 
 	class Meta():
 		model=User
-		fields=('username','email','password')
+		fields=('username','password')
+
 class UserProfileInfoForm(forms.ModelForm):
 	class Meta():
 		model=UserProfileInfo
-		fields='__all__'
+		fields=['phone_number']

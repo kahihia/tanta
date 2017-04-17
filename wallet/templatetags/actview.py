@@ -8,9 +8,9 @@ register=template.Library()
 @register.inclusion_tag('transactions_list.html', takes_context=True)
 def show_activity(context):
 	user=context['request'].user
-	sent_list=Transactions.objects.filter(sender=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')
-	recieved_list=Transactions.objects.filter(reciever=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')
-	exchanged_list=Transactions.objects.filter(fx=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')
+	sent_list=Transactions.objects.filter(sender=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
+	recieved_list=Transactions.objects.filter(reciever=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
+	exchanged_list=Transactions.objects.filter(fx=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
 	rates=ForexRates.objects.filter(date__lte=timezone.now()).order_by('date')
 
 
