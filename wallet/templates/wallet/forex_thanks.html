@@ -1,9 +1,13 @@
 {% extends "wallet/base.html" %}
 {% block content %}
-
-<h1>You exchanged:</h1>
-{{test}}
-
- <a class="btn btn-success" href="{% url 'wallet:wallet_summary' %}">Return to Wallet</a>
+<div class="container px2 py3">
+<div class='clearfix mxn2'>
+<h1 class="flex flex-auto">You exchanged:</h1>
+<h3>{{amount}} {{ch}} for {{fc}} {{cw}}</h3>
+<a class="btn btn-success" href="{% url 'wallet:wallet_summary' %}">Return to Wallet</a>
 
 {% endblock content %}
+</div>
+</div>
+
+ 

@@ -1,16 +1,14 @@
 {% extends "wallet/base.html" %}
 {% load static %}
+{% load actview %}
 {% block content %}
 <div class='container'>
 	<div class="center px2 py2 white bg-gray bg-cover bg-center" style="background: #e5e5e5">
 	<div class="row">
-<h2>Your balances are:</h2>
-<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
-</div>
- <div class='flex-auto p2'>
+	<h2>Current Rates (base USD)</h2>
+
+	{% show_rates %}
+	<div class='flex-auto p2'>
    <h3>I want to exchange:</h3>
    
 </div>
@@ -30,6 +28,9 @@
 		<br>
 	<input type="submit" class="btn btn-success" value="Exchange">
 	</form>
+
+</div>
+ 
 </div>
     </div>
 {% endblock content %}

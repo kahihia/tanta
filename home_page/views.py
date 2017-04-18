@@ -28,12 +28,16 @@ def contact(request):
 			form.save(commit=True)
 			return thanks(request)
 	return render(request,'home_page/contact.html',{'form':form})
+
 def about(request):
 	return render(request,'home_page/about.html')
+
 def thanks(request):
 	return render(request,'home_page/thank_you.html')
+
 def onyx(request):
 	return render(request,'home_page/onyx.html')
+
 def getstarted(request):
 	registered=False
 
@@ -60,6 +64,7 @@ def getstarted(request):
 	return render(request,'home_page/getstart.html',
 		{'user_form':user_form,'profile_form':profile_form,
 		'registered':registered})
+
 def signin(request):
 	if request.method == 'POST':
 		username=request.POST.get('username','')

@@ -1,43 +1,30 @@
 {% load static %}
 <div class="container px2 py3">
 <div class='clearfix mxn2'>
+<h2 class="h1 mb0">Recent Activity</h2>
 <div class="flex flex-auto mxn2">
-<div class="col-4 ml0 mb0 px0"><h2 class="h1 mb0">Recent Activity</h2></div>
-    <div class="col-6 mx4 mb0 pl2"><h2 class="h1 mb0">Current Rates (base USD)</h2></div>
+
 </div>
-<div class="sm-col sm-col-2 ">
+<div class="sm-col sm-col-4 ml-4">
     {% for transfer in sent %}
 
     <h5>Sent {{transfer.reciever}} {{transfer.amount}} {{transfer.currency}}</h5> on {{transfer.transfer_date|date:'M d, Y P e'}}
     {% endfor %}
     </div>
-
-<div class="sm-col sm-col-2">
-    {% for transfer in recieved %}
+<div class="sm-col sm-col-4 ml-4">
+    {% for transfer in received %}
      <h5><strong>Recieved</strong> {{transfer.amount}} {{transfer.currency}}</h5> from {{transfer.sender}} on {{transfer.transfer_date|date:'M d, Y P e'}}
      {% endfor %}
      </div>
 
-<div class="sm-col sm-col-2">
+<div class="sm-col sm-col-4 ml-4">
     {% for transfer in changed %}
     <h5>You changed {{transfer.amount}} {{transfer.currency}}</h5>
     to {{transfer.changed_amount}} {{transfer.changed_currency}} on {{transfer.transfer_date|date:'M d, Y P'}}
 
     {% endfor %}
     </div> 
-{% for rate in rates %}
 
-<div class='sm-col sm-col-4 mt0'>
-<div class="flex">
-<div class="ml-auto">
-<h4>{{rate.dollars}}</h4>
-
-<h4>{{rate.euros}}</h4>
-
-<h4>{{rate.pounds}}</h4>
-
-<h4>{{rate.cedis}}</h4>
-{% endfor %}
 </div>
 </div>
 </div>

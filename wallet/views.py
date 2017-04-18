@@ -46,6 +46,7 @@ def transfer(request):
 
 		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency,})
 	return render(request,'transfer.html',{'form':transfer,})
+
 def info(request):
 	return render(request,'info.html')
 	
@@ -87,7 +88,7 @@ def forex(request):
 
 			Transactions.objects.save_forex(user,amount,currency_have,final_currency,currency_want)
 			
-			return render(request, 'forex_thanks.html',{'test':final_currency})
+			return render(request, 'forex_thanks.html',{'amount':amount, 'ch':currency_have, 'fc':final_currency, 'cw':currency_want})
 
 			
 	return render(request,'forex.html',{'form2':forex})

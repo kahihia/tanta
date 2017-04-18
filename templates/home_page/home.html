@@ -4,20 +4,33 @@
 {% load staticfiles %}
 <html>
 {% block body_block %}
-<div id=jumbo class="container">
-	<div class="jumbotron">
-	<h1>Welcome to TantaPay</h1>
-	<p class="sub">More than 2 billion of the world’s people are unbanked, primarily due to a lack of
-access and high costs. At TantaPay, our mission is to get the entire world access to
-financial services.</p>
-<p>If you are a foreign worker looking to send money home to your family, a world
-traveler looking for the easiest way to get foreign currency, a small business owner
-looking to expand, or an ambitious saver looking for a place to put your savings to
-work, we have a solution for you.</p>
-	<p><a class="btn btn-primary btn-lg" href="{% url 'home_page:onyx' %}" role="button">Learn more</a></p>
+<script>$(document).ready(function(){
+        $('h1').animate({left: '250px'});
+    });
+    </script>
+<div class="center px3 py4 white bg-gray bg-cover bg-center" style="background-image: url(https://c1.staticflickr.com/9/8245/29792149102_8ee8177c91_h.jpg); height: 400px;">
+<h1 style="color: #76797c; font-family: 'Fjalla One'; font-size: 61px;">Welcome to TantaPay</h1>
+	<div class="clearfix mxn2 my4 py4">
+	<h4 style="color: #76797c;">Imagine a world without banks, without credit cards, without limits.</h4>
+	
+</div>
+
+</div>
+<div class="container">
+<div class='clearfix mxn2' style="color: #76797c;">
+	<h5>
+	At TantaPay, you control your money. There is no minimum balance required in
+your wallet, no inactivity fees, and no sales gimmicks to upgrade your service or
+increase your fees. Choose the currencies you want to hold in your wallet, and hold
+them for as long as you want.
+</h5>
+<a class="btn btn-primary" href="{% url 'home_page:onyx' %}" role="button">Learn more</a>
+
+</div>
 	</div>
 </div>
-</section>
+	
+	
 {% endblock body_block %}		
 </body>
 </html>
