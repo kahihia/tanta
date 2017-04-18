@@ -4,27 +4,51 @@
 {% load staticfiles %}
 <html>
 {% block body_block %}
-<script>$(document).ready(function(){
-        $('h1').animate({left: '250px'});
+<script src="{% static 'changethewords/jquery.changethewords.js' %}"></script>
+<link rel="stylesheet" href="{% static 'changethewords/animate.changethewords.css'%}">
+
+<script type="text/javascript">
+$('document').ready(function(){
+    $(function(){
+      $("#changethewords").changeWords({
+        time: 2000,
+        animate: "fadeInUpBig",
+        selector: "span",
+        repeat: false
+      });
     });
-    </script>
+    });
+  </script>
+ 
+
 <div class="center px3 py4 white bg-gray bg-cover bg-center" style="background-image: url(https://c1.staticflickr.com/9/8245/29792149102_8ee8177c91_h.jpg); height: 400px;">
-<h1 style="color: #76797c; font-family: 'Fjalla One'; font-size: 61px;">Welcome to TantaPay</h1>
-	<div class="clearfix mxn2 my4 py4">
-	<h4 style="color: #76797c;">Imagine a world without banks, without credit cards, without limits.</h4>
+<h1 style="color: #535456; font-family: 'Fjalla One'; font-size: 61px;">Welcome to TantaPay</h1>
+	
+	<div class="clearfix mxn2 my4 py4" id="changethewords">
+	<h2 style="color: #535456;">Imagine a world without: 
+	<span data-id='1'>banks</span> 
+	<span data-id='2'>credit cards</span> 
+	<span data-id=3>limits.</span></h2>
+	</div>
 	
 </div>
 
 </div>
-<div class="container">
+<div class="container mt4">
 <div class='clearfix mxn2' style="color: #76797c;">
-	<h5>
+<div class="col-8 px2 mx-auto">
+	<h4 style="color: #161515; font-family: 'Roboto';">
 	At TantaPay, you control your money. There is no minimum balance required in
 your wallet, no inactivity fees, and no sales gimmicks to upgrade your service or
 increase your fees. Choose the currencies you want to hold in your wallet, and hold
 them for as long as you want.
-</h5>
-<a class="btn btn-primary" href="{% url 'home_page:onyx' %}" role="button">Learn more</a>
+</h4>
+<a class="btn btn-default mt2" href="{% url 'home_page:onyx' %}" role="button">Learn more</a>
+</div>
+<div class="container">
+	<br>
+</div>
+
 
 </div>
 	</div>
