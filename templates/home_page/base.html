@@ -26,7 +26,6 @@
 			
 		<li><a class="navbar-link" href="{% url 'home_page:about' %}">About Us</a></li>
 		<li><a class="navbar-link" href="{% url 'home_page:contact' %}">Contact Us</a></li>
-		<li><a class="navbar-link" href="{% url 'home_page:onyx' %}">Why OnyxEngine</a></li>
 		
 		{% if user.is_authenticated %}
 		<li><a class= 'navbar-link' href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>

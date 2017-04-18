@@ -2,20 +2,34 @@
 {% load staticfiles %}
 {% load actview %}
 {% block content %}
-
 <div class='flex justify-center'>
 <div class='p2 m4-center'>
-<h1>Welcome, {{user.username}}!</h1>
+<h1 style="font-family: 'News Cycle';">Welcome, {{user.username}}!</h1>
 </div>
 </div>
 <div class='container'>
 <div class="center px2 py2 white bg-gray bg-cover bg-center" style='background:#e5e5e5'>
-<div class="row">
 <h2>Your balances are:</h2>
-<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+<div class='block mx-auto'><h3>
+{% if user.wallet.dollars > 0 %} 
+{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
+{% endif %}
+
+{% if user.wallet.euros > 0 %}
+ <div class='col-md-3'><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
+{% endif %}
+
+{% if user.wallet.pounds > 0 %}
+    
+<div class='col-md-3'><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
+
+{% endif %}
+
+{% if user.wallet.local > 0 %}
+    
+<div class='col-md-3'><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+
+{% endif %}
 </div>
 {% show_activity %}
 </div>
