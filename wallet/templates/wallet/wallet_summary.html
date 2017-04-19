@@ -10,28 +10,33 @@
 <div class='container'>
 <div class="center px2 py2 white bg-gray bg-cover bg-center" style='background:#e5e5e5'>
 <h2>Your balances are:</h2>
-<div class='block mx-auto'><h3>
+
+<div class="clearfix mxn2">
+
+<h3>
 {% if user.wallet.dollars > 0 %} 
-{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
+{{user.wallet.dollars}}</h3><img class="rounded" src="{% static 'images/us.png' %}"><p>USD</p>
 {% endif %}
 
 {% if user.wallet.euros > 0 %}
- <div class='col-md-3'><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
+ <div class='col col-6 sm-col-4 md-col-4 lg-col-4 ml3 px2 mb3'><h3>{{user.wallet.euros}}</h3><img class="rounded" src="{% static 'images/euro.png' %}"><p>EUR</p></div>
 {% endif %}
 
 {% if user.wallet.pounds > 0 %}
     
-<div class='col-md-3'><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
+<div class='col col-6 sm-col-4 md-col-4 lg-col-4 ml3 px2 mb3'><h3>{{user.wallet.pounds}}</h3><img class="rounded" src="{% static 'images/uk.png' %}"><p>GBP</p></div>
 
 {% endif %}
 
 {% if user.wallet.local > 0 %}
     
-<div class='col-md-3'><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
+<div class='col col-6 sm-col-4 md-col-4 lg-col-4 ml3 px2 mb3'><h3>{{user.wallet.local}}</h3><img src="{% static 'images/ghana.ico' %}"><p>GHS</p></div>
 
 {% endif %}
 </div>
-{% show_activity %}
 </div>
+
+</div>
+{% show_activity %}
 
 {% endblock content %}
