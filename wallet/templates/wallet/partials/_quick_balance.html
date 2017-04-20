@@ -1,0 +1,29 @@
+{% for item in wallet %}
+
+<div class="sm-col sm-col-2 ml-2">
+<h4>Your balance</h4>
+
+{% if item.dollars > 0 %} 
+<h6>{{item.dollars}}</h6><p class="mt-0">USD</p>
+{% endif %}
+
+
+{% if item.euros > 0 %}
+ <h6>{{item.euros}}</h6><p class="mt-0">EUR</p>
+{% endif %}
+
+
+{% if item.pounds > 0 %}   
+<h6>{{item.pounds}}</h6><p class="mt-0">GBP</p>
+{% endif %}
+
+
+
+{% if item.cedis > 0 %}  
+<h6>{{item.cedis}}</h6><p class="mt-0">GHS</p>
+{% endif %}
+	
+{% endfor %}
+
+</div>
+ </div>

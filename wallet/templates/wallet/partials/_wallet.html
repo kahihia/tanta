@@ -1,0 +1,24 @@
+{% load static %}
+{% for item in wallet %}
+	<li class="mx-auto">
+{% if item.dollars > 0 %} 
+<h3>{{item.dollars}}</h3><img class="rounded" src="{% static 'images/us.png' %}"><p class="mt-0">USD</p>
+{% endif %}</li>
+
+<li class="mx-auto">
+{% if item.euros > 0 %}
+ <h3>{{item.euros}}</h3><img class="rounded" src="{% static 'images/euro.png' %}"><p class="mt-0">EUR</p>
+{% endif %}</li>
+
+<li class="mx-auto">
+{% if item.pounds > 0 %}   
+<h3>{{item.pounds}}</h3><img class="rounded" src="{% static 'images/uk.png' %}"><p class="mt-0">GBP</p>
+{% endif %}</li>
+
+
+<li class="mx-auto">
+{% if item.cedis > 0 %}  
+<h3>{{item.cedis}}</h3><img src="{% static 'images/ghana.ico' %}"><p class="mt-0">GHS</p>
+{% endif %}
+</li>
+{% endfor %}

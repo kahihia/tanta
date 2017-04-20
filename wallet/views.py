@@ -28,14 +28,14 @@ def transfer(request):
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
-				return render(request,'invalid_user.html')
+				return render(request,'partials/_invalid_user.html')
 		try:
 			send_start,recieve_start = sender.grab_values(sender,recipient,currency)
 		except:
-			return render(request, 'self_send_error.html')
+			return render(request, 'partials/_self_send_error.html')
 
 		if sender.transaction_send(send_start,transferamnt) == "Insufficient Funds":
-			return render(request,'insufficient.html')
+			return render(request,'partials/_insufficient.html')
 		else:
 			send_final=sender.transaction_send(send_start,transferamnt)
 		recip_final=recipient.transaction_recieve(recieve_start,transferamnt)
@@ -61,6 +61,8 @@ def forex(request):
 			currency_want=forex['currency_want'].value()
 			currency_have=forex['currency_have'].value()
 			amount=Decimal(forex['amount'].value())
+		if currency_want == currency_have:
+			return render(request, 'partials/_currency_error.html')
 # GRAB THE CURRENCY THAT THE USER HAS USING WALLET MODEL
 			user_start_have=user.grab_forex(user,currency_have)
 			forex_start_have=tanta_fx.grab_forex(tanta_fx,currency_have)
@@ -70,7 +72,7 @@ def forex(request):
 # SUBTRACT THE AMOUNT THAT THE USER WANTS TO EXCHANGE FROM THEIR WALLET 
 #AND INTO FOREX WALLET USING WALLET MODEL
 			if user.transaction_send(user_start_have,amount)=='Insufficient Funds':
-				return render(request,'insufficient.html')
+				return render(request,'partials/_insufficient.html')
 			else:
 				user_get=user.transaction_send(user_start_have,amount)
 				forex_get=tanta_fx.transaction_recieve(forex_start_have,amount)

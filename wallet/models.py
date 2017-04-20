@@ -15,7 +15,7 @@ class Wallet(models.Model):
 	dollars=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	euros=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 	pounds=models.DecimalField(default=0,decimal_places=2,max_digits=9)
-	local=models.DecimalField(default=0,decimal_places=2,max_digits=9)
+	cedis=models.DecimalField(default=0,decimal_places=2,max_digits=9)
 
 
 	
@@ -33,8 +33,8 @@ class Wallet(models.Model):
 			sender_start=sender.pounds
 			recipient_start=recipient.pounds
 		elif currency=='GHS':
-			sender_start=sender.local
-			recipient_start=recipient.local
+			sender_start=sender.cedis
+			recipient_start=recipient.cedis
 
 		return sender_start, recipient_start
 
@@ -46,7 +46,7 @@ class Wallet(models.Model):
 		elif currency=='GBP':
 			user_start=user.pounds
 		elif currency=='GHS':
-			user_start=user.local
+			user_start=user.cedis
 		return user_start
 
 	
@@ -72,8 +72,8 @@ class Wallet(models.Model):
 			sender.pounds=sender_final
 			recipient.pounds=recipient_final
 		elif currency=='GHS':
-			sender.local=sender_final
-			recipient.local=recipient_final
+			sender.cedis=sender_final
+			recipient.cedis=recipient_final
 		self.save()
 
 	def commit_forex(self,user,currency,user_amount):
@@ -84,7 +84,7 @@ class Wallet(models.Model):
 		elif currency=='GBP':
 			user.pounds=user_amount
 		elif currency=='GHS':
-			user.local=user_amount
+			user.cedis=user_amount
 		self.save()
 
 

@@ -1,7 +1,11 @@
 {% load static %}
 <div class="container px2 py3">
 <div class='clearfix mxn2'>
+{% if sent.count > 0 or changed.count > 0 or recieved.count > 0%}
+    
 <h2 class="h1 mb0">Recent Activity</h2>
+{% endif %}
+
 <div class="flex flex-auto mxn2">
 
 </div>
