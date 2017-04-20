@@ -61,8 +61,8 @@ def forex(request):
 			currency_want=forex['currency_want'].value()
 			currency_have=forex['currency_have'].value()
 			amount=Decimal(forex['amount'].value())
-		if currency_want == currency_have:
-			return render(request, 'partials/_currency_error.html')
+			if currency_want == currency_have:
+				return render(request, 'partials/_currency_error.html')
 # GRAB THE CURRENCY THAT THE USER HAS USING WALLET MODEL
 			user_start_have=user.grab_forex(user,currency_have)
 			forex_start_have=tanta_fx.grab_forex(tanta_fx,currency_have)
