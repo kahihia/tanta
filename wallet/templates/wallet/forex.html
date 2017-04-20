@@ -3,29 +3,35 @@
 {% load actview %}
 {% block content %}
 <div class='container'>
-	<div class="center px2 py2 white bg-gray bg-cover bg-center" style="background: #e5e5e5; height: 800px;">
+	<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style="background: #e5e5e5; height: 800px;">
 	<div class="row">
 	<h2>Current Rates (base USD)</h2>
 
 	{% show_rates %}
-	<div class='flex-auto p2'>
+	<div class='flex-auto mb2 ml4'>
    <h3>I want to exchange:</h3>
 </div>
-		<form method='post'>
-{% csrf_token %}
-<div class="center">
-{{form2.amount}}
-{{form2.currency_have}}
-</div>
-<div class="flex-auto p2">
-	<h3>For:</h3>
-	</div>
-	{{form2.currency_want}}
-		<br>
-		<br>
-	<input type="submit" class="btn btn-success" value="Exchange">
-	</form>
 
+<div class="container">
+<div class="flex flex-auto ml4" style="position: absolute;">
+	{% quick_balance %}
+		</div>
+<form method='post' class="ml4">
+		{% csrf_token %}
+	<div class="center" style="position: relative;">
+	{{form2.amount}}
+	{{form2.currency_have}}
+	</div>
+<div class="center mr4" style="position: relative;">
+	<h3>For:</h3>
+		{{form2.currency_want}}
+
+		</div>
+			<input type="submit" class="btn btn-success mt4 mr4 pr2" value="Exchange">
+
+
+	</form>
+</div>
 </div>
  </div>
 </div>

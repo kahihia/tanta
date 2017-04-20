@@ -9,10 +9,11 @@
 </div>
 
 <div class='container'>
-<div class="center px2 py2 white bg-gray bg-cover bg-center" style='background:#e5e5e5'>
+<div class="flex flex-auto ml3 mt2" style="position: absolute;"><h4>Your id is {{user.id}}</h4></div>
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5'>
 <h2>Your balances are:</h2>
 
-<div class="clearfix mx-auto">
+<div class="container mx-auto">
 
 <div class='col col-12 mx-auto'>
 <ul class="list-reset flex justify-between mx-auto">
@@ -23,5 +24,9 @@
 </div>
 
 {% show_activity %}
+<div class='center'>
+<div class='col-6 mx-auto'>
+<a class="h3 btn btn-success mx4" id='fxbtn' href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
 
+<a class="h3 btn btn-success mx4" id='fxbtn' href="{% url 'wallet:forex' %}" role="button">Currency Exchange</a></div>
 {% endblock content %}

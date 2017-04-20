@@ -2,7 +2,7 @@
 {% extends "home_page/base.html" %}
 {% block body_block %}
 
-<div class="jumbotron">
+<div class="center container mxn2 mt4 pt4">
 	<h1>Please Sign In</h1>
 	<form action="{% url 'home_page:sign_in' %}" method="POST">
 		{% csrf_token %}
