@@ -3,18 +3,18 @@
 
 <div class="center py4 ml4 pl4">
 <div class="col col-6 sm-col-6 md-col-4 lg-col-2 pl4 mb3 ml4">
-<h4>{{rate.dollars}}</h4>
+<h4 id='USD'>{{rate.dollars}}</h4>
 <img src="{% static 'images/us.png' %}" style="height: 42px; width: 42px;"></div>
 
 <div class="col col-6 sm-col-6 md-col-4 lg-col-2 pl4 mb3 ml4">
-<h4>{{rate.euros}}</h4><img src="{% static 'images/euro.png' %}" style="height: 42px; width: 42px;"></div>
+<h4 id="EUR">{{rate.euros}}</h4><img src="{% static 'images/euro.png' %}" style="height: 42px; width: 42px;"></div>
 
 <div class="col col-6 sm-col-6 md-col-4 lg-col-2 pl4 mb3 ml4">
-<h4>{{rate.pounds}}</h4><img src="{% static 'images/uk.png' %}" style="height: 42px; width: 42px;">
+<h4 id='GBP'>{{rate.pounds}}</h4><img src="{% static 'images/uk.png' %}" style="height: 42px; width: 42px;">
 </div>
 
 <div class="col col-6 sm-col-6 md-col-4 lg-col-2 pl4 mb3 ml4">
-<h4>{{rate.cedis}}</h4><img src="{% static 'images/ghana.ico' %}" style="height: 42px; width: 42px;">
+<h4 id='GHS'>{{rate.cedis}}</h4><img src="{% static 'images/ghana.ico' %}" style="height: 42px; width: 42px;">
 </div>
 {% endfor %}
 </div>
