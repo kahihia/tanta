@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.core.validators import RegexValidator
 # Create your models here.
 currencies=(
 	('USD','United States Dollar'),
@@ -174,3 +175,48 @@ class ForexRates(models.Model):
 
 	def __str__(self):
 		return str(self.date)
+
+class SettingsManager(models.Manager):
+	def save_settings(self,user,borrow_lend,groups):
+		self.create(user=user, borrow_lend=borrow_lend,groups=groups)
+
+class Settings(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+	borrow_lend=models.BooleanField(default=False)
+	groups=models.ManyToManyField('Group')
+	objects=SettingsManager()
+
+	def __str__(self):
+		return str(self.user) + " " + "settings"
+
+class Group(models.Model):
+	name=models.CharField(max_length=200)
+	group_type = models.CharField(max_length=100)
+	class Meta:
+		ordering=['name']
+	def __str__(self):
+		return str(self.name)
+
+
+class GroupMember(models.Model):
+    person = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey('Group')
+    
+    def __str__(self):
+        return "%s is in group %s" % (self.person, self.group)
+
+
+class Contacts(models.Model):
+	user=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+	name=models.CharField(max_length=150)
+	userid=models.IntegerField()
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_number = models.CharField(max_length=15,validators=[phone_regex], blank=True)
+
+	def __str__(self):
+		return str(self.name)
+
+
+
+
+

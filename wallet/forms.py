@@ -1,5 +1,6 @@
 from django import forms
-from wallet.models import Wallet, currencies
+from django.forms import ModelForm
+from wallet.models import Wallet, currencies, Settings
 
 
 class TransferForm(forms.Form):
@@ -14,4 +15,8 @@ class ForexForm(forms.Form):
 		widget=forms.NumberInput(attrs={'placeholder':'Exchange Amount'}))
 	currency_have=forms.ChoiceField(currencies,label='')
 	currency_want=forms.ChoiceField(currencies,label='')
-	
+
+class SettingsForm(ModelForm):
+	class Meta:
+		model=Settings
+		exclude=['user']

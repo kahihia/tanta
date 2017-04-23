@@ -5,6 +5,10 @@
 <link href="https://fonts.googleapis.com/css?family=Catamaran:800" rel="stylesheet"> 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" >
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/bss.css' %}">
@@ -24,6 +28,8 @@
 		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:transfer' %}">Transfer</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:settings' %}">Settings</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:contacts' %}">Contacts</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
 		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
 		</ul>

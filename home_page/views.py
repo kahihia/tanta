@@ -74,7 +74,7 @@ def signin(request):
 		if user:
 			if user.is_active:
 				login(request,user)
-				return HttpResponseRedirect(reverse('home_page:index'))
+				return HttpResponseRedirect(reverse('wallet:wallet_summary'))
 			else:
 				return HttpResponse('Account not active')
 		else:

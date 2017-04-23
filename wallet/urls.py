@@ -6,5 +6,7 @@ urlpatterns=[
 	url(r'^transfer/$',views.transfer,name='transfer'),
 	url(r'^info/$',views.info,name='info'),
 	url(r'^forex/$',views.forex,name='forex'),
+	url(r'^settings/$',views.settings,name='settings'),
+	url(r'^contacts/$',views.contacts,name='contacts'),
 
 ]

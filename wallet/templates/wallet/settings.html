@@ -1,0 +1,15 @@
+{% extends "wallet/base.html" %}
+{% block content %}
+
+{% load actview %}
+    
+
+ <form method="post">
+ 	{% csrf_token %}
+
+ 	{{form.as_table}}
+ 	<button class="btn btn-success mt3" type="submit">Save Settings</button>
+
+ </form>
+
+{% endblock content %}

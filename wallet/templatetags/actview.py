@@ -1,5 +1,5 @@
 from django import template
-from wallet.models import Transactions, ForexRates,Wallet
+from wallet.models import Transactions,ForexRates,Wallet,Contacts
 from django.db.models import Q
 from django.utils import timezone
 
@@ -34,3 +34,9 @@ def quick_balance(context):
 	wallet_list=Wallet.objects.filter(user=user)
 	
 	return{'wallet':wallet_list}
+
+@register.inclusion_tag('partials/_contacts.html', takes_context=True)
+def display_contacts(context):
+	user=context['request'].user
+	contact_list=Contacts.objects.filter(user=user)
+	return{'contact_list':contact_list}

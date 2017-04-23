@@ -1,12 +1,12 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
-from wallet.models import Wallet,Transactions,ForexRates
-from wallet.forms import TransferForm,ForexForm
+from wallet.models import Wallet,Transactions,ForexRates,Settings
+from wallet.forms import TransferForm,ForexForm,SettingsForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from decimal import *
@@ -94,3 +94,17 @@ def forex(request):
 
 			
 	return render(request,'forex.html',{'form2':forex})
+
+def settings(request):
+	form=SettingsForm()
+	if request.method=='POST':
+		form=SettingsForm(request.POST)
+		settings=form.save(commit=False)
+		settings.user=request.user
+		settings.save()
+		return render(request,'wallet_summary.html')
+
+	return render(request,'settings.html',{'form':form})
+
+def contacts(request):
+	return render(request,'contacts.html')
