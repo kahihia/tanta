@@ -96,15 +96,22 @@ def forex(request):
 	return render(request,'forex.html',{'form2':forex})
 
 def settings(request):
+	
+	user=Settings.objects.get(user=request.user)
 	form=SettingsForm()
 	if request.method=='POST':
 		form=SettingsForm(request.POST)
-		settings=form.save(commit=False)
-		settings.user=request.user
-		settings.save()
-		return render(request,'wallet_summary.html')
+		redirect_to = request.POST.get('next','')
+		if form.is_valid():
+			borrow_lend=form['borrow_lend'].value()
+			user.borrow_lend=borrow_lend
+			user.save()
+		return HttpResponseRedirect(redirect_to)
 
 	return render(request,'settings.html',{'form':form})
 
 def contacts(request):
 	return render(request,'contacts.html')
+
+def p2p(request):
+	return render(request, 'p2p.html')

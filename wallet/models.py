@@ -176,18 +176,25 @@ class ForexRates(models.Model):
 	def __str__(self):
 		return str(self.date)
 
-class SettingsManager(models.Manager):
-	def save_settings(self,user,borrow_lend,groups):
-		self.create(user=user, borrow_lend=borrow_lend,groups=groups)
 
 class Settings(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	borrow_lend=models.BooleanField(default=False)
-	groups=models.ManyToManyField('Group')
-	objects=SettingsManager()
+	
 
+	def save_settings(self,user,borrow_lend):
+		borrow_lend=user.borrow_lend
+		self.save()
+	
 	def __str__(self):
 		return str(self.user) + " " + "settings"
+
+class Social(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	groups=models.ManyToManyField('Group',null=True)
+
+	def __str__(self):
+		return str(self.user)
 
 class Group(models.Model):
 	name=models.CharField(max_length=200)

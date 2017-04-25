@@ -24,12 +24,15 @@
 <div class="navbar-header">
 </div>
 	<ul id=navlist class="nav navbar-nav">
-			
+	
 		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:transfer' %}">Transfer</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:settings' %}">Settings</a></li>
+		<li><a class="navbar-link" href="{% url 'wallet:settings' %}?next={{ request.path|urlencode }}">Settings</a></li>
 		<li><a class="navbar-link" href="{% url 'wallet:contacts' %}">Contacts</a></li>
+		{% if user.Settings.borrow_lend == True %}    
+		<li><a class="navbar-link" href="{% url 'wallet:p2p' %}">Borrow or Lend</a></li>
+		{% endif %}
 		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
 		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
 		</ul>
