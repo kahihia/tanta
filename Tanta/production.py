@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 import logging, logging.config
 import sys
+import psycopg2
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_dir=os.path.join(BASE_DIR,"templates")
@@ -137,8 +138,12 @@ WSGI_APPLICATION = 'Tanta.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django',
+        'USER': 'kvurxaezgzjolx',
+        'PASSWORD': 'e30a86ec66875c874f28eeaf04b9929d886753cc8474a4308b0cea27d7ba8a1c',
+        'HOST': 'ec2-54-225-242-74.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

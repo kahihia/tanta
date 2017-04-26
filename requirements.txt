@@ -5,11 +5,14 @@ celery==4.0.2
 cffi==1.10.0
 Django==1.11
 django-activity-stream==0.6.3
+django-celery-results==1.0.1
+dj-database-url==0.4.2
 gunicorn==19.7.0
 olefile==0.44
 openexchangerates==0.1.1
 packaging==16.8
 Pillow==4.0.0
+psycopg2==2.7.1
 pycparser==2.17
 pyparsing==2.2.0
 redis==2.10.5
