@@ -30,4 +30,5 @@ urlpatterns =[
     url(r'^accounts/login/$',views.login,name='login'),
     url(r'^accounts/logout/$',views.logout,name='logout',kwargs={'next_page':'/'}),
     url(r'^wallet/',include("wallet.urls",namespace="wallet")),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

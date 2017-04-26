@@ -22,6 +22,7 @@ MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
 WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
+ROOT_URLCONF = 'Tanta.urls'
 # WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 
 # Quick-start development settings - unsuitable for production
