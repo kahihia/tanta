@@ -1,5 +1,5 @@
 from django import template
-from wallet.models import Transactions,ForexRates,Wallet,Contacts
+from wallet.models import Transactions,ForexRates,Wallet,Contacts,GroupMember
 from django.db.models import Q
 from django.utils import timezone
 
@@ -40,3 +40,11 @@ def display_contacts(context):
 	user=context['request'].user
 	contact_list=Contacts.objects.filter(user=user)
 	return{'contact_list':contact_list}
+
+@register.inclusion_tag('partials/_groups.html', takes_context=True)
+def groups(context):
+	user=context['request'].user
+	group_list=GroupMember.objects.filter(person=user)
+	return{'group_list':group_list}
+
+

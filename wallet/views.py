@@ -98,6 +98,7 @@ def forex(request):
 def settings(request):
 	
 	user=Settings.objects.get(user=request.user)
+	usrname=User.objects.get(username=request.user.username)
 	form=SettingsForm()
 	if request.method=='POST':
 		form=SettingsForm(request.POST)

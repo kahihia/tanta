@@ -210,7 +210,7 @@ class GroupMember(models.Model):
     group = models.ForeignKey('Group')
     
     def __str__(self):
-        return "%s is in group %s" % (self.person, self.group)
+        return str(self.group)
 
 
 class Contacts(models.Model):

@@ -1,7 +1,11 @@
 {% extends "wallet/base.html" %}
+{% load actview %}
 {% block content %}
 <div class="container">
 	<h3> Your ID is: {{user.id}}</h3>
+	<br>
+	<h3>Your Groups Are:</h3>
+	{% groups %}
 </div>
     
 {% endblock content %}

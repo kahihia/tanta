@@ -3,15 +3,16 @@
 
 {% load actview %}
     
-
+<div class='center container'>
  <form method="post">
  	{% csrf_token %}
 
- 	{{form.as_table}}
+ 	{{form.as_p}}
  	<input type="hidden" name="next" value='{{ request.GET.next }}'>
  	<button class="btn btn-success mt3" type="submit">Save Settings</button>
 
 
  </form>
+ </div>
 
 {% endblock content %}

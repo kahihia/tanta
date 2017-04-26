@@ -16,8 +16,11 @@ class ForexForm(forms.Form):
 	currency_have=forms.ChoiceField(currencies,label='')
 	currency_want=forms.ChoiceField(currencies,label='')
 
-class SettingsForm(forms.Form):
-	borrow_lend=forms.BooleanField(label='Peer to Peer Lending',required=False)
+class SettingsForm(forms.ModelForm):
+	class Meta:
+		model=Settings
+		fields=['borrow_lend']
+	
 			
 
 class GroupForm(forms.Form):
