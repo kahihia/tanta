@@ -11,7 +11,6 @@ from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from decimal import *
 from django.db.models.signals import post_save
-from actstream.models import user_stream
 from django.db.models import Q
 # Create your views here.
 def wallet_summary(request):

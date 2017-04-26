@@ -88,7 +88,6 @@ INSTALLED_APPS = [
     'home_page',
     'dashboard',
     'wallet',
-    'actstream',
     'django_celery_results'
 ]
 
@@ -103,16 +102,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-ACTSTREAM_SETTINGS ={
-    'MANAGER': 'actstream.managers.ActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': False,
-    'GFK_FETCH_DEPTH': 1,
-}
-ACTSTREAM_ACTION_MODELS=['auth.User']
-ROOT_URLCONF = 'Tanta.urls'
 
 TEMPLATES = [
     {

@@ -89,7 +89,6 @@ INSTALLED_APPS = [
     'home_page',
     'dashboard',
     'wallet',
-    'actstream',
 ]
 
 
@@ -103,16 +102,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-ACTSTREAM_SETTINGS ={
-    'MANAGER': 'actstream.managers.ActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': False,
-    'GFK_FETCH_DEPTH': 1,
-}
-ACTSTREAM_ACTION_MODELS=['auth.User']
-ROOT_URLCONF = 'Tanta.urls'
 
 TEMPLATES = [
     {
@@ -139,7 +128,7 @@ WSGI_APPLICATION = 'Tanta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django',
+        'NAME': 'dbo7t24fej6c6s',
         'USER': 'kvurxaezgzjolx',
         'PASSWORD': 'e30a86ec66875c874f28eeaf04b9929d886753cc8474a4308b0cea27d7ba8a1c',
         'HOST': 'ec2-54-225-242-74.compute-1.amazonaws.com',
