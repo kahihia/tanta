@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
-from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group
-from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm
+from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts
+from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm,TF,ContactForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -16,10 +16,10 @@ from django.db.models import Q
 def wallet_summary(request):
 	return render(request,'wallet_summary.html',)
 
-def transfer(request, *args, **kwargs):
+def transfer(request):
 	user=request.user
-	transfer = TransferForm()
 	sender=Wallet.objects.get(user=request.user)
+	transfer = TransferForm()
 	if request.method=='POST':
 		transfer =TransferForm(request.POST)
 		if transfer.is_valid():
@@ -115,6 +115,30 @@ def settings(request):
 
 def contacts(request):
 	return render(request,'contacts.html')
+
+def add_contacts(request):
+	try:
+		user=Contacts.objects.get(user=request.user)
+	except:
+		user=Contacts.objects.create(user=request.user)
+	form=ContactForm()
+	if request.method=='POST':
+		form=ContactForm(request.POST)
+		redirect_to = request.POST.get('next','')
+		if form.is_valid():
+			contact_name=form['contact_name'].value()
+			try:
+				contact=User.objects.get(username=contact_name)
+			except:
+				return render(request,'partials/_invalid_user.html')
+			contact=contact.username
+			if Contacts.objects.filter(user=request.user,name=contact).exists():
+				return HttpResponseRedirect(redirect_to)
+			else:
+				Contacts.objects.save_contact(request.user,contact)
+				return HttpResponseRedirect(redirect_to)
+	
+	return render(request, 'add_contact.html', {'form':form})
 
 def p2p(request):
 	return render(request, 'p2p.html')

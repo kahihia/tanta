@@ -42,3 +42,13 @@ class GroupForm(forms.Form):
 		super(GroupForm,self).__init__(*args,**kwargs)
 		self.fields['group'] = forms.ChoiceField(
 			choices=[(o.id,str(o)) for o in Group.objects.all()])
+
+class TF(forms.Form):
+	def __init__(self, user, *args, **kwargs):
+		super(TF,self).__init__(*args,**kwargs)
+		self.fields['currency'] = forms.ChoiceField(
+			choices=[Wallet.objects.filter(user=user).iterator()])
+
+class ContactForm(forms.Form):
+	contact_name=forms.CharField(label='',)
+		

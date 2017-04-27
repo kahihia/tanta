@@ -1,0 +1,14 @@
+{% extends "wallet/base.html" %}
+{% block content %}
+<div class="container">
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
+    <form method="post">
+{% csrf_token %}
+{{form}}
+<input type="hidden" name="next" value='{{ request.GET.next }}'>
+
+<input type="submit" class="h3 p1 btn btn-success" value="Add Contacts">
+</form>
+</div>
+</div>
+{% endblock content %}

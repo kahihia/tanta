@@ -191,7 +191,7 @@ class Settings(models.Model):
 
 class Social(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	groups=models.ManyToManyField('Group',null=True)
+	groups=models.ManyToManyField('Group')
 
 	def __str__(self):
 		return str(self.user)
@@ -212,13 +212,16 @@ class GroupMember(models.Model):
     def __str__(self):
         return str(self.group)
 
-
+class ContactsManager(models.Manager):
+	def save_contact(self,user,contact):
+		self.create(user=user,name=contact,phone_number='')
+	
 class Contacts(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 	name=models.CharField(max_length=150)
-	userid=models.IntegerField()
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 	phone_number = models.CharField(max_length=15,validators=[phone_regex], blank=True)
+	objects=ContactsManager()
 
 	def __str__(self):
 		return str(self.name)

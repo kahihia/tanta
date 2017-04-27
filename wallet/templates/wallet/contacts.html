@@ -1,7 +1,11 @@
 {% extends "wallet/base.html" %}
 {% load actview %}
 {% block content %}
+<div class="container">
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
+<h2>{% display_contacts %}</h2>
 
-{% display_contacts %}
-    
+<a href="{% url 'wallet:add_contact' %}?next={{ request.path|urlencode }}" role='button'>Add Contacts</a>
+    </div>
+    </div>
 {% endblock content %}
