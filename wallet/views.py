@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
-from wallet.models import Wallet,Transactions,ForexRates,Settings
-from wallet.forms import TransferForm,ForexForm,SettingsForm
+from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group
+from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -15,7 +15,9 @@ from django.db.models import Q
 # Create your views here.
 def wallet_summary(request):
 	return render(request,'wallet_summary.html',)
-def transfer(request):
+
+def transfer(request, *args, **kwargs):
+	user=request.user
 	transfer = TransferForm()
 	sender=Wallet.objects.get(user=request.user)
 	if request.method=='POST':
@@ -96,8 +98,8 @@ def forex(request):
 
 def settings(request):
 	
-	user=Settings.objects.get(user=request.user)
-	usrname=User.objects.get(username=request.user.username)
+	user=Settings.objects.create(user=request.user)
+	# usrname=User.objects.get(username=request.user.username)
 	form=SettingsForm()
 	if request.method=='POST':
 		form=SettingsForm(request.POST)
@@ -115,3 +117,24 @@ def contacts(request):
 
 def p2p(request):
 	return render(request, 'p2p.html')
+
+def groups(request):
+	try:
+		user=GroupMember.objects.get(person=request.user)
+	except:
+		user=GroupMember.objects.create(person=request.user)
+	form=GroupForm()
+	if request.method=='POST':
+		form=GroupForm(request.POST)
+		redirect_to=request.POST.get('next','')
+		if form.is_valid():
+			group=form['group'].value()
+			group=Group.objects.get(id=group)
+			user.group=group
+			user.save()
+			return HttpResponseRedirect(redirect_to)
+
+	return render(request, 'groups.html',{'form':form})
+
+
+

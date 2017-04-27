@@ -1,5 +1,5 @@
 from django import template
-from wallet.models import Transactions,ForexRates,Wallet,Contacts,GroupMember
+from wallet.models import Transactions,ForexRates,Wallet,Contacts,GroupMember,Social
 from django.db.models import Q
 from django.utils import timezone
 

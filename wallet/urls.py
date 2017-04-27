@@ -9,5 +9,6 @@ urlpatterns=[
 	url(r'^settings/$',views.settings,name='settings'),
 	url(r'^contacts/$',views.contacts,name='contacts'),
 	url(r'^peer2peer/$',views.p2p,name='p2p'),
+	url(r'^groups/$',views.groups,name='groups'),
 
 ]

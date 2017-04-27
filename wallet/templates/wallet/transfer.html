@@ -1,41 +1,21 @@
-<!DOCTYPE html>
+{% extends "wallet/base.html" %}
 {% load static %}
-<html>
-<head>
-<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Catamaran:800" rel="stylesheet"> 
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle" >
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/bss.css' %}">
-	<title>Transfer</title>
-</head>
-<nav class="navbar navbar-default">
-<div class="navbar-header">
-</div>
-	<ul id=navlist class="nav navbar-nav">
-			
-		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
-		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
-		</ul>
-		</nav>
-<body>
-<div class="center px3 mx4 white bg-gray bg-cover bg-center rounded">
-	<h1>TantaPay Transfer</h1>
-</div>
-<div class="container">
-<div class="center px3 py4 white bg-gray bg-cover bg-center rounded" style='background: #e5e5e5'>
-<div class="row">
+{% load actview %}
+{% block content %}
+    
+    <div class='container'>
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;'>
 <h2>Your balances are:</h2>
-<div class=col-md-3><h3>{{user.wallet.dollars}}</h3><img src="{% static 'images/us.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.euros}}</h3><img src="{% static 'images/euro.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.pounds}}</h3><img src="{% static 'images/uk.png' %}"></div>
-<div class=col-md-3><h3>{{user.wallet.cedis}}</h3><img src="{% static 'images/ghana.ico' %}"></div>
-</div>
-<div class="p2 m4">
+
+<div class="container mx-auto">
+
+<div class='col col-12 mx-auto'>
+<ul class="list-reset flex justify-between mx-auto">
+
+{% show_wallet %}
+
+</ul>
+
 <form method='post'>
 {% csrf_token %}
 <ul class="list-reset">
@@ -49,8 +29,8 @@
 </form>
 </div>
 </div>
-</div>
-</div>
-</body>
-</html>
+
+
+
+{% endblock content %}
 

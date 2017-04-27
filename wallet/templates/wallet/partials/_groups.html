@@ -1,3 +1,9 @@
-{% for group in group_list %}
-	{{group}}
+{% if group_list.count > 0 %}
+<h3>Your Groups Are:</h3>
+    {% for item in group_list %}
+	{{item}}
 {% endfor %}
+{% else %}
+    <div class='center'>
+	<a class="btn btn-default mt3 mb4" href="{% url 'wallet:groups' %}?next={{ request.path|urlencode }}" role="button">Join a Group</a></div>
+{% endif %}

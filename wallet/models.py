@@ -207,7 +207,7 @@ class Group(models.Model):
 
 class GroupMember(models.Model):
     person = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.ForeignKey('Group')
+    group = models.ForeignKey('Group',null=True)
     
     def __str__(self):
         return str(self.group)
