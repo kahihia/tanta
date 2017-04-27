@@ -25,7 +25,7 @@ def transfer(request):
 		if transfer.is_valid():
 			transferamnt=Decimal(transfer['amount'].value())
 			recipient=transfer['user'].value()
-			currency=transfer['currency'].value()
+			currency=request.POST['curr']
 			try:
 				recipient=Wallet.objects.get(user=recipient)
 			except:
@@ -45,7 +45,7 @@ def transfer(request):
 		recipient.commit_transaction(sender,recipient,currency,send_final,recip_final)
 		Transactions.objects.save_record(sender,recipient,transferamnt,currency)
 
-		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency,})
+		return render(request,'thanks.html',{'transfer':transferamnt,'denom':currency})
 	return render(request,'transfer.html',{'form':transfer,})
 
 def info(request):
@@ -60,7 +60,7 @@ def forex(request):
 		forex=ForexForm(request.POST)
 		if forex.is_valid():
 			currency_want=forex['currency_want'].value()
-			currency_have=forex['currency_have'].value()
+			currency_have=request.POST['curr']
 			amount=Decimal(forex['amount'].value())
 			if currency_want == currency_have:
 				return render(request, 'partials/_currency_error.html')
@@ -135,7 +135,7 @@ def add_contacts(request):
 			if Contacts.objects.filter(user=request.user,name=contact).exists():
 				return HttpResponseRedirect(redirect_to)
 			else:
-				Contacts.objects.save_contact(request.user,contact)
+				Contacts.objects.save_contact(user,contact)
 				return HttpResponseRedirect(redirect_to)
 	
 	return render(request, 'add_contact.html', {'form':form})

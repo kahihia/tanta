@@ -20,7 +20,8 @@
 		{% csrf_token %}
 	<div class="center" style="position: relative;">
 	{{form2.amount}}
-	{{form2.currency_have}}
+	<select name='curr' id="items">
+</select>
 	</div>
 <div class="center mr4" style="position: relative;">
 	<h3>For:</h3>
@@ -39,9 +40,20 @@
 
 <script>
 $('document').ready(function(){
+	var choices = [];
+	$('p').each(function(index){
+		var $this = $(this);
+		choices[index] = [$this.html()];
+	});
+	$.each(choices,function(key,value){
+		$('#items')
+			.append($("<option></option>")
+				.attr('value',value)
+				.text(value));
+		});
 	$('#id_currency_want').mouseout(function() {
 		var amount = $('#id_amount').val()
-		var have = $('#id_currency_have').val()
+		var have = $('#items').val()
 		var want = $('#id_currency_want').val()
 		var want_rate = parseFloat($('#' + want).html())
 		var have_rate = parseFloat($('#' + have).html())

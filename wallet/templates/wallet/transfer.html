@@ -20,9 +20,13 @@
 {% csrf_token %}
 <ul class="list-reset">
 	<li class="m2">{{form.amount}}</li>
+	<li class="m2"><select name='curr' id="items">
+</select></li>
 	<li class="m2">{{form.currency}}</li>
 	<li class="m2">{{form.user}}</li>
 </ul>
+
+
 
 	<input type="submit" class="h3 p1 btn btn-success" value="Transfer">
 	<br>
@@ -30,7 +34,23 @@
 </div>
 </div>
 
+<script type="text/javascript">
+$('document').ready(function(){
+	var choices = [];
+	$('p').each(function(index){
+		var $this = $(this);
+		choices[index] = [$this.html()];
+	});
+	$.each(choices,function(key,value){
+		$('#items')
+			.append($("<option></option>")
+				.attr('value',value)
+				.text(value));
+		});
+});
+	
 
+</script>
 
 {% endblock content %}
 
