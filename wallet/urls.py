@@ -10,6 +10,7 @@ urlpatterns=[
 	url(r'^contacts/$',views.contacts,name='contacts'),
 	url(r'^peer2peer/$',views.p2p,name='p2p'),
 	url(r'^groups/$',views.groups,name='groups'),
-	url(r'^contacts/add/$',views.add_contacts,name='add_contact')
+	url(r'^contacts/add/$',views.add_contacts,name='add_contact'),
+	url(r'^info/reset/$',views.passreset,name='pword')
 
 ]

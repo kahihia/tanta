@@ -7,7 +7,7 @@
 	{% if registered %}
 		<h1>Thank you for registering!</h1>
 	{% else %}
-		<h1>Get started with OnyxEngine today!</h1>
+		<h1>Get started with TantaPay today!</h1>
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{user_form.as_p}}

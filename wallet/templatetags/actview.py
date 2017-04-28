@@ -8,7 +8,7 @@ register=template.Library()
 @register.inclusion_tag('partials/_transactions_list.html', takes_context=True)
 def show_activity(context):
 	user=context['request'].user
-	sent_list=Transactions.objects.filter(sender=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')
+	sent_list=Transactions.objects.filter(sender=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
 	recieved_list=Transactions.objects.filter(reciever=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
 	exchanged_list=Transactions.objects.filter(fx=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
 
