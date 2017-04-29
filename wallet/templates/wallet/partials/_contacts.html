@@ -1,4 +1,10 @@
+{% if contact_list.count == 0 %}
+
+<h2>You don't have any contacts!</h2>
+<h4>Click below to add some friends.</h4>
+{% else %}    
 {% for contact in contact_list %}
 {{contact.name}}
 
 {% endfor %}
+{% endif %}

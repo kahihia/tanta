@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
 from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts
 from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm,TF,ContactForm
+from home_page.models import UserProfileInfo
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -27,12 +28,20 @@ def transfer(request):
 		transfer =TransferForm(request.POST)
 		if transfer.is_valid():
 			transferamnt=Decimal(transfer['amount'].value())
-			recipient=transfer['user'].value()
+			recipient=transfer['recipient'].value()
 			currency=request.POST['curr']
 			try:
-				recipient=Wallet.objects.get(user=recipient)
+				try:
+					contact_user=User.objects.get(username=recipient)
+					recipient_id=contact_user.id
+					recipient=Wallet.objects.get(user=recipient_id)
+				except:
+					return render(request,'partials/_invalid_user.html')
 			except:
-				return render(request,'partials/_invalid_user.html')
+				try:
+					recipient=Wallet.objects.get(user=recipient)
+				except:
+					return render(request,'partials/_invalid_user.html')
 		try:
 			send_start,recieve_start = sender.grab_values(sender,recipient,currency)
 		except:
@@ -146,15 +155,34 @@ def add_contacts(request):
 		redirect_to = request.POST.get('next','')
 		if form.is_valid():
 			contact_name=form['contact_name'].value()
+			### GRAB THE VALUE FROM EITHER PHONE OR USERNAME
 			try:
-				contact=User.objects.get(username=contact_name)
+				contact_user=User.objects.get(username=contact_name)
 			except:
-				return render(request,'partials/_invalid_user.html')
-			contact=contact.username
-			if Contacts.objects.filter(user=request.user,name=contact).exists():
+				contact=UserProfileInfo.objects.get(phone_number=contact_name)
+			else:
+				return render(request,'partials/_invalid_user.html', {'test':contact_name})
+			
+			# IF THE A USERNAME IS ENTERED:
+			try:
+				contact_id=contact_user.id
+				contact_user=contact_user.username
+				contact_phone=UserProfileInfo.objects.get(user=contact_id)
+				if Contacts.objects.filter(user=request.user,name=contact_user).exists():
+					return HttpResponseRedirect(redirect_to)
+				else:
+					Contacts.objects.save_contact(request.user,contact_user,contact_phone)
+					return HttpResponseRedirect(redirect_to)
+			# IF A PHONE NUMBER IS ENTERED:
+
+			except NameError:
+				contact_phone=form['contact_name'].value()
+				contact=User.objects.get(username=contact.user)
+				contact_name=contact.username
+			if Contacts.objects.filter(user=request.user,name=contact_name).exists():
 				return HttpResponseRedirect(redirect_to)
 			else:
-				Contacts.objects.save_contact(user,contact)
+				Contacts.objects.save_contact(request.user,contact_name,contact_phone)
 				return HttpResponseRedirect(redirect_to)
 	
 	return render(request, 'add_contact.html', {'form':form})

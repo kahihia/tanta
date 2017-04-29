@@ -213,8 +213,8 @@ class GroupMember(models.Model):
         return str(self.group)
 
 class ContactsManager(models.Manager):
-	def save_contact(self,user,contact):
-		self.create(user=user,name=contact,phone_number='')
+	def save_contact(self,user,contact,phone):
+		self.create(user=user,name=contact,phone_number=phone)
 	
 class Contacts(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -224,8 +224,7 @@ class Contacts(models.Model):
 	objects=ContactsManager()
 
 	def __str__(self):
-		return str(self.name)
-
+		return str(self.name) + " " + str(self.user)
 
 
 

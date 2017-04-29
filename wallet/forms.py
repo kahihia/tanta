@@ -8,8 +8,8 @@ from django.db.models import Q
 class TransferForm(forms.Form):
 	amount=forms.DecimalField(min_value=1,decimal_places=2,label='',
 		widget=forms.NumberInput(attrs={'placeholder':'Transfer Amount'}))
-	user=forms.IntegerField(label='',
-		widget=forms.NumberInput(attrs={'placeholder':"Enter recipient's id"}))
+	recipient=forms.CharField(label='',
+		widget=forms.TextInput(attrs={'placeholder':'Enter name or id'}))
 
 class TForm(forms.ModelForm):
 	currency = forms.ModelChoiceField(queryset=Wallet.objects.filter(user=7,euros__gt=0))
@@ -48,5 +48,6 @@ class TF(forms.Form):
 			choices=[Wallet.objects.filter(user=user).iterator()])
 
 class ContactForm(forms.Form):
-	contact_name=forms.CharField(label='',)
+	contact_name=forms.CharField(label='',
+		widget=forms.TextInput(attrs={'placeholder':'Enter name or phone #'}))
 		

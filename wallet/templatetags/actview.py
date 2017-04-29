@@ -41,6 +41,14 @@ def display_contacts(context):
 	contact_list=Contacts.objects.filter(user=user)
 	return{'contact_list':contact_list}
 
+
+# @register.inclusion_tag('partials/_contact_activity.html', takes_context=True)
+# def contact_activity(context):
+# 	user=context['request'].user
+# 	contact_list=Contacts.objects.filter(user=user)
+# 	sent_list=Transactions.objects.filter(sender=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
+# 	recieved_list=Transactions.objects.filter(reciever=user,transfer_date__lte=timezone.now()).order_by('-transfer_date')[:5]
+
 @register.inclusion_tag('partials/_groups.html', takes_context=True)
 def groups(context):
 	user=context['request'].user
