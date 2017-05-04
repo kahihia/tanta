@@ -36,6 +36,9 @@ class UserForm(forms.ModelForm):
 		fields=('username','password')
 
 class UserProfileInfoForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(UserProfileInfoForm, self).__init__(*args, **kwargs)
+		self.fields['phone_number'].required = True
 	class Meta():
 		model=UserProfileInfo
 		fields=['phone_number']

@@ -129,7 +129,7 @@ def settings(request):
 		user=Settings.objects.get(user=request.user)
 	except:
 		user=Settings.objects.create(user=request.user)
-	form=SettingsForm()
+	form=SettingsForm(initial={'borrow_lend':user.borrow_lend})
 	if request.method=='POST':
 		form=SettingsForm(request.POST)
 		redirect_to = request.POST.get('next','')
@@ -157,11 +157,15 @@ def add_contacts(request):
 			contact_name=form['contact_name'].value()
 			### GRAB THE VALUE FROM EITHER PHONE OR USERNAME
 			try:
-				contact_user=User.objects.get(username=contact_name)
+				try:
+					contact_user=User.objects.get(username=contact_name)
+				except:
+					return render(request,'partials/_invalid_user.html')
 			except:
-				contact=UserProfileInfo.objects.get(phone_number=contact_name)
-			else:
-				return render(request,'partials/_invalid_user.html', {'test':contact_name})
+				try:
+					contact=UserProfileInfo.objects.get(phone_number=contact_name)
+				except:
+					return render(request,'partials/_invalid_user.html')
 			
 			# IF THE A USERNAME IS ENTERED:
 			try:
