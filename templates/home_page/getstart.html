@@ -2,6 +2,14 @@
 {% extends "home_page/base.html" %}
 {% load staticfiles %}
 {% block body_block %}
+<script>
+{% if messages %}
+    {% for message in messages %}
+    	alert(message);
+    {% endfor %}
+
+{% endif %}
+</script>
 <div class="container">
 <div class='jumbotron'>
 	{% if registered %}
@@ -17,6 +25,21 @@
 		</form>
 		
 	    {% endif %}
+	    <script>
+	$('document').ready(function(){
+		$(function(){
+			mixpanel.identify()
+		});
+		$(function(){
+			var username = $('#id_username').val()
+			var phoneno = $('#id_phone_number').val()
+			mixpanel.people.set({
+    				"$username": username,
+    				"$phone": phoneno,
+    				"$created": new Date()});
+	});
+});
+	    </script>
 </div>
 </div>
 

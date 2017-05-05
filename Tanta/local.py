@@ -38,8 +38,10 @@ DEBUG = True
 # SECURE_CONTENT_TYPE_NOSNIFF=True
 # SECURE_BROWSER_XSS_FILTER=True
 # X_FRAME_OPTIONS='DENY'
-ALLOWED_HOSTS = ["get-onyx.herokuapp.com",'localhost']
+ALLOWED_HOSTS = ['localhost']
 
+#MIXPANEL STUFF
+MIXPANEL_API_TOKEN = '44da1c002acc3ea3e05c5ffa04a98f89'
 # CELERY STUFF
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
@@ -89,7 +91,9 @@ INSTALLED_APPS = [
     'home_page',
     'dashboard',
     'wallet',
-    'django_celery_results'
+    'django_celery_results',
+    'mixpanel',
+    'tox'
 ]
 
 

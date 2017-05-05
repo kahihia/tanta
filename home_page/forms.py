@@ -34,6 +34,14 @@ class UserForm(forms.ModelForm):
 	class Meta():
 		model=User
 		fields=('username','password')
+	def clean_username(self):
+		username=self.cleaned_data['username']
+		username.lower()
+		try:
+		 	exsistinguser=User.objects.get(username=username)
+		except:
+			raise forms.ValidationError('Username taken')
+		return username
 
 class UserProfileInfoForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):

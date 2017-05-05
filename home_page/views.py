@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import (TemplateView,View,ListView,DetailView,CreateView,UpdateView,DeleteView)
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -46,6 +47,8 @@ def getstarted(request):
 		profile_form=UserProfileInfoForm(data=request.POST)
 
 		if user_form.is_valid() and profile_form.is_valid():
+
+
 			user=user_form.save()
 			user.set_password(user.password)
 			user.save()

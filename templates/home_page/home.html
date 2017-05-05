@@ -6,6 +6,9 @@
 
 <script type="text/javascript">
 $('document').ready(function(){
+	$(function(){
+		mixpanel.track('View Home Page')
+	});
     $(function(){
       $("#changethewords").changeWords({
         time: 2000,

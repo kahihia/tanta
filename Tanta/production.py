@@ -49,6 +49,9 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
+# MIXPANEL STUFF
+MIXPANEL_API_TOKEN = '6091ddf40322577e80c47179e6a1265d'
+
 # LOGGING 
 LOGGING = {
     'version': 1,
@@ -90,6 +93,9 @@ INSTALLED_APPS = [
     'home_page',
     'dashboard',
     'wallet',
+    'mixpanel',
+    'mixpanel-celery',
+    'tox'
 ]
 
 
