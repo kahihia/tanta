@@ -24,9 +24,15 @@ def show_rates():
 @register.inclusion_tag('partials/_wallet.html', takes_context=True)
 def show_wallet(context):
 	user=context['request'].user
-	wallet_list=Wallet.objects.filter(user=user)
-	
+	try:
+		wallet_list=Wallet.objects.filter(user=user)
+	except:
+		wallet_list=[]
+		
 	return{'wallet':wallet_list}
+
+	
+	
 
 @register.inclusion_tag('partials/_quick_balance.html', takes_context=True)
 def quick_balance(context):

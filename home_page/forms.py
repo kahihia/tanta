@@ -39,8 +39,9 @@ class UserForm(forms.ModelForm):
 		username.lower()
 		try:
 		 	exsistinguser=User.objects.get(username=username)
+		 	raise forms.ValidationError('Username taken')
 		except:
-			raise forms.ValidationError('Username taken')
+			pass
 		return username
 
 class UserProfileInfoForm(forms.ModelForm):

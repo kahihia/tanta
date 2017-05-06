@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
 from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts
-from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm,TF,ContactForm
+from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm,ContactForm
 from home_page.models import UserProfileInfo
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
