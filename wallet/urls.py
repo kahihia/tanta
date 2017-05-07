@@ -13,5 +13,6 @@ urlpatterns=[
 	url(r'^contacts/add/$',views.add_contacts,name='add_contact'),
 	url(r'^info/reset/$',views.passreset,name='pword'),
 	url(r'^groups/display_groups/$',views.display_groups,name='display_groups'),
+	url(r'^contacts/verify/$',views.send_contacts,name='verify_contact'),
 
 ]

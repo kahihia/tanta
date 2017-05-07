@@ -16,7 +16,7 @@
 
 </ul>
 
-<form method='post'>
+<form method='post' data-veri-contacts-url="{% url 'wallet:verify_contact' %}">
 {% csrf_token %}
 <ul class="list-reset">
 	<li class="m2">{{form.amount}}</li>
@@ -24,6 +24,8 @@
 </select></li>
 	<li class="m2">{{form.currency}}</li>
 	<li class="m2">{{form.recipient}}</li>
+	<li class="m2">Or send to contact: <select name='contact' id='contacts'><option value=""></option></select>
+	</li>
 </ul>
 
 
@@ -36,6 +38,21 @@
 
 <script type="text/javascript">
 $('document').ready(function(){
+	var form = $('form')
+	$.ajax({
+		url:form.attr('data-veri-contacts-url'),
+				datatype: 'json',
+				data: form.serialize(),
+				success: function(data){
+					for (var i = 0; i < data.length; i++){
+						console.log(data)
+						$('#contacts')
+						.append($("<option></option>")
+						.attr('value',data.value)
+						.text(data[i].fields.name));
+					}
+					}
+				});
 	var choices = [];
 	$('p').each(function(index){
 		var $this = $(this);

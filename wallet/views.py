@@ -31,9 +31,13 @@ def transfer(request):
 			transferamnt=Decimal(transfer['amount'].value())
 			recipient=transfer['recipient'].value()
 			currency=request.POST['curr']
+			recipient_contact=request.POST['contact']
 			try:
 				try:
-					contact_user=User.objects.get(username=recipient)
+					try:
+						contact_user=User.objects.get(username=recipient)
+					except:
+						contact_user=User.objects.get(username=recipient_contact)
 					recipient_id=contact_user.id
 					recipient=Wallet.objects.get(user=recipient_id)
 				except:
@@ -211,6 +215,11 @@ def display_groups(request):
 	group_type=group_type.lower()
 	type_query=Group.objects.filter(group_type=group_type)
 	data=serializers.serialize('json',type_query)
+	return HttpResponse(data,'json')
+
+def send_contacts(request):
+	contact_query=Contacts.objects.filter(user=request.user)
+	data=serializers.serialize('json',contact_query)
 	return HttpResponse(data,'json')
 
 

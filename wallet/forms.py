@@ -7,7 +7,7 @@ from wallet.models import Wallet, currencies, Settings, GroupMember, Group
 class TransferForm(forms.Form):
 	amount=forms.DecimalField(min_value=1,decimal_places=2,label='',
 		widget=forms.NumberInput(attrs={'placeholder':'Transfer Amount'}))
-	recipient=forms.CharField(label='',
+	recipient=forms.CharField(label='',required=False,
 		widget=forms.TextInput(attrs={'placeholder':'Enter name or id'}))
 		
 
