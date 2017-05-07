@@ -2,14 +2,48 @@
 {% block content %}
 <div class="container">
 <div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
-<form method="post">
+<form method="post" data-show-groups-url="{% url 'wallet:display_groups'%}">
 {% csrf_token %}
-{{form}}
+<select name='type' id='type'>
+	<option value=""></option>
+	<option value="borrow">Borrow</option>
+	<option value="lend">Lend</option>
+</select>
+<select multiple name='group' id='group' style="display: none;">
+	
+</select>
 <input type="hidden" name="next" value='{{ request.GET.next }}'>
 
 <input type="submit" class="h3 p1 btn btn-success" value="Join">
 </form>
 </div>
 </div>
-    
+
+<script>
+	$(document).ready(function(){
+		$('#type').change(function(){
+			var form = $('form')
+			var request = $.ajax({
+				url:form.attr('data-show-groups-url'),
+				datatype: 'json',
+				data: form.serialize(),
+				success: function(data){
+					$('#group').empty()
+					for (var i = 0; i < data.length; i++){
+						$('#group')
+						.append($("<option></option>")
+						.attr('value',data.value)
+						.text(data[i].fields.name));
+					}
+					
+					$('#group').show();
+
+
+				}
+			});
+		});
+	});
+
+
+</script>
 {% endblock content %}

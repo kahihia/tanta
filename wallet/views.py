@@ -2,13 +2,13 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
-from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts
-from wallet.forms import TransferForm,ForexForm,SettingsForm,GroupForm,ContactForm
+from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts,Social
+from wallet.forms import TransferForm,ForexForm,SettingsForm,ContactForm,JoinGroupForm
 from home_page.models import UserProfileInfo
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -16,6 +16,7 @@ from decimal import *
 from django.db.models.signals import post_save
 from django.db.models import Q
 from datetime import datetime, timedelta
+from django.core import serializers
 # Create your views here.
 def wallet_summary(request):
 	return render(request,'wallet_summary.html',)
@@ -145,10 +146,6 @@ def contacts(request):
 	return render(request,'contacts.html')
 
 def add_contacts(request):
-	try:
-		user=Contacts.objects.get(user=request.user)
-	except:
-		user=Contacts.objects.create(user=request.user)
 	form=ContactForm()
 	if request.method=='POST':
 		form=ContactForm(request.POST)
@@ -195,22 +192,26 @@ def p2p(request):
 	return render(request, 'p2p.html')
 
 def groups(request):
-	try:
-		user=GroupMember.objects.get(person=request.user)
-	except:
-		user=GroupMember.objects.create(person=request.user)
-	form=GroupForm()
+	form=JoinGroupForm()
 	if request.method=='POST':
-		form=GroupForm(request.POST)
 		redirect_to=request.POST.get('next','')
-		if form.is_valid():
-			group=form['group'].value()
-			group=Group.objects.get(id=group)
+		groups=request.POST.getlist('group')
+		user=GroupMember.objects.create(person=request.user)
+		for item in groups:
+			group=Group.objects.get(name=item)
 			user.group=group
+			user.person=request.user
 			user.save()
-			return HttpResponseRedirect(redirect_to)
+		return HttpResponseRedirect(redirect_to)
 
-	return render(request, 'groups.html',{'form':form})
+	return render(request, 'groups.html',)
+
+def display_groups(request):
+	group_type=request.GET.get('type',None)
+	group_type=group_type.lower()
+	type_query=Group.objects.filter(group_type=group_type)
+	data=serializers.serialize('json',type_query)
+	return HttpResponse(data,'json')
 
 
 

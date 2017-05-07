@@ -10,6 +10,9 @@ currencies=(
 	('GBP','British Pound'),
 	('EUR','Euro'),
 	('GHS','Ghanaian Cedi'),)
+group_types=(
+	('borrow'),
+	('lend'))
 
 class Wallet(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -190,15 +193,19 @@ class Settings(models.Model):
 		return str(self.user) + " " + "settings"
 
 class Social(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	groups=models.ManyToManyField('Group')
+	list_display=('groups')
 
 	def __str__(self):
 		return str(self.user)
 
 class Group(models.Model):
+	group_types=(
+	('borrow','borrow'),
+	('lend','lend'))
 	name=models.CharField(max_length=200)
-	group_type = models.CharField(max_length=100)
+	group_type = models.CharField(max_length=6,choices=group_types,default='lend')
 	class Meta:
 		ordering=['name']
 	def __str__(self):
@@ -210,7 +217,7 @@ class GroupMember(models.Model):
     group = models.ForeignKey('Group',null=True)
     
     def __str__(self):
-        return str(self.group)
+        return '{} joined {}'.format(self.person,self.group)
 
 class ContactsManager(models.Manager):
 	def save_contact(self,user,contact,phone):

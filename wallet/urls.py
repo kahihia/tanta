@@ -11,6 +11,7 @@ urlpatterns=[
 	url(r'^peer2peer/$',views.p2p,name='p2p'),
 	url(r'^groups/$',views.groups,name='groups'),
 	url(r'^contacts/add/$',views.add_contacts,name='add_contact'),
-	url(r'^info/reset/$',views.passreset,name='pword')
+	url(r'^info/reset/$',views.passreset,name='pword'),
+	url(r'^groups/display_groups/$',views.display_groups,name='display_groups'),
 
 ]

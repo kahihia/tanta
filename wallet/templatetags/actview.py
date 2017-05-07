@@ -31,9 +31,6 @@ def show_wallet(context):
 		
 	return{'wallet':wallet_list}
 
-	
-	
-
 @register.inclusion_tag('partials/_quick_balance.html', takes_context=True)
 def quick_balance(context):
 	user=context['request'].user

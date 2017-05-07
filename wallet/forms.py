@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
 from wallet.models import Wallet, currencies, Settings, GroupMember, Group
-from django.db.models import Q
 
 
 
@@ -10,12 +9,6 @@ class TransferForm(forms.Form):
 		widget=forms.NumberInput(attrs={'placeholder':'Transfer Amount'}))
 	recipient=forms.CharField(label='',
 		widget=forms.TextInput(attrs={'placeholder':'Enter name or id'}))
-
-class TForm(forms.ModelForm):
-	currency = forms.ModelChoiceField(queryset=Wallet.objects.filter(user=7,euros__gt=0))
-	class Meta:
-		model=Wallet
-		fields=['dollars','euros']
 		
 
 class ForexForm(forms.Form):
@@ -29,17 +22,10 @@ class SettingsForm(forms.ModelForm):
 		fields=['borrow_lend']
 
 class JoinGroupForm(forms.ModelForm):
-	group=forms.ModelChoiceField(queryset=Group.objects.all())
+	group=forms.ChoiceField()
 	class Meta:
 		model=Group
 		fields=['name']
-
-
-class GroupForm(forms.Form):
-	def __init__(self,*args,**kwargs):
-		super(GroupForm,self).__init__(*args,**kwargs)
-		self.fields['group'] = forms.ChoiceField(
-			choices=[(o.id,str(o)) for o in Group.objects.all()])
 
 class TF(forms.Form):
 	def __init__(self, user, *args, **kwargs):

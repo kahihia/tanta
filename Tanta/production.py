@@ -94,7 +94,6 @@ INSTALLED_APPS = [
     'dashboard',
     'wallet',
     'mixpanel',
-    'mixpanel-celery',
     'tox'
 ]
 
