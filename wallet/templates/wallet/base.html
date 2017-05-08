@@ -29,20 +29,31 @@ mixpanel.init("44da1c002acc3ea3e05c5ffa04a98f89");</script><!-- end Mixpanel -->
 	<ul id=navlist class="nav navbar-nav">
 	
 		<li><a class="navbar-link" href="{% url 'wallet:wallet_summary' %}">My Wallet</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:transfer' %}">Transfer</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:forex' %}">Currency Exchange</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:settings' %}?next={% url 'wallet:wallet_summary' %}">Settings</a></li>
-		<li><a class="navbar-link" href="{% url 'wallet:contacts' %}">Contacts</a></li>
-		{% if user.Settings.borrow_lend == True %}    
-		<li><a class="navbar-link" href="{% url 'wallet:p2p' %}">Borrow or Lend</a></li>
-		{% endif %}
+		<li>
+		<div class='realative inline block'>
+			  <button type="button" class="btn btn-big mt1 p4" id='menu' style=" background-color: #f9f9f9;">
+			    Actions &#9662;
+			  </button>
+			  <div class="clearfix" style="display: none; position: absolute; background-color: #f9f9f9;" id='dropdown-content'>
+			    <a href="{% url 'wallet:transfer' %}" class="btn block">Transfer</a>
+			    <a href="{% url 'wallet:forex' %}"" class="btn block">Currency Exchange</a>
+			    <a href="{% url 'wallet:contacts' %}" class="btn block">Manage Contacts</a>
+			    <a href="{% url 'wallet:p2p' %}" class="btn block">Borrow or Lend</a>
+			  </div>
+			</div></li>
 		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>
 		<li><a class= 'navbar-link' href="{% url 'dashboard:logout' %}">Sign Out</a></li>
 		</ul>
 		</nav>
 <br>
-
 </body>
+<script>
+	$(document).ready(function(){
+		$('#menu').click(function(){
+			$('#dropdown-content').toggle()
+		});
+	})
+</script>
 </html>
 {% block content %}
 {% endblock content %}

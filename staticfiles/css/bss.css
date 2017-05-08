@@ -2,3 +2,27 @@ img{
 	height: 42px;
 	width: 42px;
 }
+/*.dropdown{
+	float: left;
+	overflow: hidden;
+}
+#menu {
+
+}
+.nav .navbar-nav a:hover, .dropdown:hover #menu {
+	background-color: #ffd460;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+}
+.dropdown-content a {
+	float: none;
+	display: block;
+}
+.dropdown-content a:hover {
+	background-color: #ffd460;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}*/

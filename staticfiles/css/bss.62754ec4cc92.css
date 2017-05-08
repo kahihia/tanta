@@ -2,7 +2,7 @@ img{
 	height: 42px;
 	width: 42px;
 }
-/*.dropdown{
+.dropdown{
 	float: left;
 	overflow: hidden;
 }
@@ -25,4 +25,4 @@ img{
 }
 .dropdown:hover .dropdown-content {
 	display: block;
-}*/
+}
