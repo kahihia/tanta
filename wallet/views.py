@@ -200,12 +200,15 @@ def groups(request):
 	if request.method=='POST':
 		redirect_to=request.POST.get('next','')
 		groups=request.POST.getlist('group')
-		user=GroupMember.objects.create(person=request.user)
 		for item in groups:
 			group=Group.objects.get(name=item)
-			user.group=group
-			user.person=request.user
-			user.save()
+			if GroupMember.objects.filter(person=request.user).filter(group=group).exists():
+				return HttpResponseRedirect(redirect_to)
+			else:
+				user=GroupMember.objects.create(person=request.user)
+				user.group=group
+				user.person=request.user
+				user.save()
 		return HttpResponseRedirect(redirect_to)
 
 	return render(request, 'groups.html',)
