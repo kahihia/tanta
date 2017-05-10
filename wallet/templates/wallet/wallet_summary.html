@@ -29,4 +29,10 @@
 <a class="h3 btn btn-success mx4 mb4 pb4" id='fxbtn' href="{% url 'wallet:transfer' %}" role="button">Transfer Money</a>
 
 <a class="h3 btn btn-success mx4 mb4 pb4" id='fxbtn' href="{% url 'wallet:forex' %}" role="button">Currency Exchange</a></div>
+
+<script>
+	$(document).ready(function(){
+		mixpanel.track('Wallet home loaded')
+	})
+</script>
 {% endblock content %}

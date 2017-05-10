@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import (TemplateView,View,ListView,DetailView,CreateView,UpdateView,DeleteView)
 from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your views here.
 

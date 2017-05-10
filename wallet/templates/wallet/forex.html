@@ -40,6 +40,7 @@
 
 <script>
 $('document').ready(function(){
+	mixpanel.track('forex loaded')
 	var choices = [];
 	$('p').each(function(index){
 		var $this = $(this);

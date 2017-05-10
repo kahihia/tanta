@@ -24,21 +24,25 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/avgrund.css' %}">
 <script>
 	$(document).ready(function(){
-		$('#type').avgrund({
-			width: 380,
-			height: 280,
-			showClose: true,
-			showCloseText: 'Close',
-			closeByDocument: true,
-			background: '#fff',
-			template: "<h3>You can only join one group at a time!</h3>"
-
-		});
-		// $('#btn-submit').prop('disabled',true);
+		var form = $('form')
+		
+		
 		$('#type').change(function(){
 			$("#type option[value='']").remove();
-			var form = $('form')
-			var request = $.ajax({
+			$.ajax({
+			url:"{% url 'wallet:group_limit' %}",
+			datatype: 'json',
+			data: form.serialize(),
+			success: function(data){
+					var data_value = data
+						if (data_value > 0){
+						$('#btn-submit').prop('disabled',true);
+					}
+					else{$('#btn-submit').prop('disabled',false);}
+				}
+		});
+			
+			$.ajax({
 				url:form.attr('data-show-groups-url'),
 				datatype: 'json',
 				data: form.serialize(),
@@ -57,6 +61,7 @@
 				}
 			});
 		});
+		
 	});
 
 

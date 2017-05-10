@@ -17,9 +17,10 @@ from django.db.models.signals import post_save
 from django.db.models import Q
 from datetime import datetime, timedelta
 from django.core import serializers
+
 # Create your views here.
 def wallet_summary(request):
-	return render(request,'wallet_summary.html',)
+	return render(request,'wallet_summary.html')
 
 def transfer(request):
 	user=request.user
@@ -227,9 +228,15 @@ def send_contacts(request):
 	return HttpResponse(data,'json')
 
 def group_limit(request):
-	group_type=request.GET.get('type',None)
-	user_limit=GroupMember.objects.filter(person=request.user,group_type=group_type)
-	if user_limit.count() >= 1:
-		return HttpResponse()
+	group_type_from_form=request.GET.get('type',None)
+	group_type_from_form=group_type_from_form.lower()
+	user_groups=GroupMember.objects.filter(person=request.user)
+	data=0
+	for item in user_groups:
+		if item.group.group_type == group_type_from_form:
+			data+=1
+		else:
+			data+=0
+	return HttpResponse(data,'json')
 
 
