@@ -29,7 +29,7 @@ ROOT_URLCONF = 'Tanta.urls'
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%%qp$f0@*3(vk4m4l8@ao@et8g+$3vzt^b_aw0(zyns0nm*vbh'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -50,8 +50,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
 # MIXPANEL STUFF
-MIXPANEL_API_TOKEN = '6091ddf40322577e80c47179e6a1265d'
-
+MIXPANEL_TOKEN = os.environ.get('MIXPANEL_TOKEN')
 # LOGGING 
 LOGGING = {
     'version': 1,

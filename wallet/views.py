@@ -200,6 +200,7 @@ def groups(request):
 	if request.method=='POST':
 		redirect_to=request.POST.get('next','')
 		groups=request.POST.getlist('group')
+
 		for item in groups:
 			group=Group.objects.get(name=item)
 			if GroupMember.objects.filter(person=request.user).filter(group=group).exists():
@@ -225,5 +226,10 @@ def send_contacts(request):
 	data=serializers.serialize('json',contact_query)
 	return HttpResponse(data,'json')
 
+def group_limit(request):
+	group_type=request.GET.get('type',None)
+	user_limit=GroupMember.objects.filter(person=request.user,group_type=group_type)
+	if user_limit.count() >= 1:
+		return HttpResponse()
 
 

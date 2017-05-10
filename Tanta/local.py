@@ -41,7 +41,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost']
 
 #MIXPANEL STUFF
-MIXPANEL_API_TOKEN = '44da1c002acc3ea3e05c5ffa04a98f89'
+MIXPANEL_API_TOKEN = os.environ.get('TANTA_MIXPANEL')
 # CELERY STUFF
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
