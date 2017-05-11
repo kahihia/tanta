@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
 from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts,Social
-from wallet.forms import TransferForm,ForexForm,SettingsForm,ContactForm,JoinGroupForm
+from wallet.forms import TransferForm,ForexForm,SettingsForm,ContactForm
 from home_page.models import UserProfileInfo
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -241,15 +241,11 @@ def group_remove(request):
 	user_groups=GroupMember.objects.filter(person=request.user)
 	if request.method=='POST':
 		redirect_to=request.POST.get('next','')
-		groups=request.POST.getlist('type')
-		for item in groups:
-			print(item)
-			if user_groups.filter(group_id=item).exits():
-				user_groups.filter(group_id=item).delete()
-			else:
-				pass
+		group_to_delete=request.POST.get('group')
+		for group in user_groups:
+			if str(group.group) == group_to_delete:
+				group.delete()
 		return HttpResponseRedirect(redirect_to)
-
 	return render(request,'group_remove.html',{'group_list':user_groups})
 
 

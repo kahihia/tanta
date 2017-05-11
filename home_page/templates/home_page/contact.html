@@ -36,6 +36,12 @@
 	<button id='button1' type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
+<script>
+	$('document').ready(function(){
+	$(function(){
+		mixpanel.track('View Contact Us')
+	});
+</script>
 {% endblock %}	
 	
 </body>

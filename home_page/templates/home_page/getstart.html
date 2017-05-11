@@ -25,7 +25,7 @@
 		</form>
 		
 	    {% endif %}
-	    <script>
+<!-- 	    <script>
 	$('document').ready(function(){
 		$(function(){
 			mixpanel.identify()
@@ -39,9 +39,16 @@
     				"$created": new Date()});
 	});
 });
-	    </script>
+	    </script> -->
 </div>
 </div>
+
+<script>
+	$('document').ready(function(){
+	$(function(){
+		mixpanel.track('Load Sign Up Page')
+	});
+</script>
 
 
 {% endblock body_block %}

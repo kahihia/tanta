@@ -5,8 +5,16 @@
 <div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
 	<h3> Your ID is: {{user.id}}</h3>
 	<a class='btn btn-default' href="{% url 'wallet:pword' %}?next={{ request.path|urlencode }}" role='button'>Change Password</a>
-	<br>
+
+	<div class='center'>
+<div class='col-6 mx-auto'>
+<a class="center btn btn-default mt3 mb4" href="{% url 'wallet:groups' %}?next={% url 'wallet:info' %}" role="button">Join a Group</a>
+	<a class="center btn btn-default mt3 mb4" href="{% url 'wallet:group_remove' %}?next={% url 'wallet:info' %}" role="button">Leave a Group</a>
+	</div>
+</div>
 	{% groups %}
+	
+	
 </div>
     </div>
 {% endblock content %}

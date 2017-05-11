@@ -21,18 +21,6 @@ class SettingsForm(forms.ModelForm):
 		model=Settings
 		fields=['borrow_lend']
 
-class JoinGroupForm(forms.ModelForm):
-	group=forms.ChoiceField()
-	class Meta:
-		model=Group
-		fields=['name']
-
-class TF(forms.Form):
-	def __init__(self, user, *args, **kwargs):
-		super(TF,self).__init__(*args,**kwargs)
-		self.fields['currency'] = forms.ChoiceField(
-			choices=[Wallet.objects.filter(user=user).iterator()])
-
 class ContactForm(forms.Form):
 	contact_name=forms.CharField(label='',
 		widget=forms.TextInput(attrs={'placeholder':'Enter name or phone #'}))
