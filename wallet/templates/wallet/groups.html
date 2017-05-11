@@ -1,7 +1,6 @@
 {% extends "wallet/base.html" %}
 {% load static %}
 {% block content %}
-<p style="display: none;">{% url 'wallet:group_limit' %}</p>
 <div class="container">
 <div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
 <form method="post" data-show-groups-url="{% url 'wallet:display_groups'%}">
@@ -20,8 +19,6 @@
 </form>
 </div>
 </div>
-<script src="{% static 'js/jquery.avgrund.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'css/avgrund.css' %}">
 <script>
 	$(document).ready(function(){
 		var form = $('form')

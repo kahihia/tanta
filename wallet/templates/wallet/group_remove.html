@@ -1,0 +1,19 @@
+{% extends 'wallet/base.html' %}
+{% load actview %}
+{% block content %}
+<div class="container">
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
+<form method="post">
+{% csrf_token %}
+<h4 class='flex justify-center'>Choose a group type to leave:</h4>
+<select multiple name='type' id='type'>
+{% for group in group_list %}
+<option value="{{group.group}}">{{group.group}}</option>	
+{% endfor %}
+</select>
+<input type="hidden" name="next" value='{{ request.GET.next }}'>
+<input type="submit" class="mt4 h3 p1 btn btn-success" value="Leave" id='btn-submit'>
+</form>
+</div>
+</div>
+{% endblock content %}

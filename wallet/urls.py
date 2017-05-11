@@ -15,5 +15,6 @@ urlpatterns=[
 	url(r'^groups/display_groups/$',views.display_groups,name='display_groups'),
 	url(r'^contacts/verify/$',views.send_contacts,name='verify_contact'),
 	url(r'^groups/group_limit/$',views.group_limit,name='group_limit'),
+	url(r'^groups/remove/$',views.group_remove,name='group_remove'),
 
 ]

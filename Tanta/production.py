@@ -50,7 +50,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
 # MIXPANEL STUFF
-MIXPANEL_TOKEN = os.environ.get('MIXPANEL_TOKEN')
+MIXPANEL_TOKEN = os.environ.get('TANTA_MIXPANEL')
 # LOGGING 
 LOGGING = {
     'version': 1,

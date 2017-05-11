@@ -197,11 +197,9 @@ def p2p(request):
 	return render(request, 'p2p.html')
 
 def groups(request):
-	form=JoinGroupForm()
 	if request.method=='POST':
 		redirect_to=request.POST.get('next','')
 		groups=request.POST.getlist('group')
-
 		for item in groups:
 			group=Group.objects.get(name=item)
 			if GroupMember.objects.filter(person=request.user).filter(group=group).exists():
@@ -238,5 +236,20 @@ def group_limit(request):
 		else:
 			data+=0
 	return HttpResponse(data,'json')
+
+def group_remove(request):
+	user_groups=GroupMember.objects.filter(person=request.user)
+	if request.method=='POST':
+		redirect_to=request.POST.get('next','')
+		groups=request.POST.getlist('type')
+		for item in groups:
+			print(item)
+			if user_groups.filter(group_id=item).exits():
+				user_groups.filter(group_id=item).delete()
+			else:
+				pass
+		return HttpResponseRedirect(redirect_to)
+
+	return render(request,'group_remove.html',{'group_list':user_groups})
 
 
