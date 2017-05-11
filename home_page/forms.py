@@ -38,7 +38,7 @@ class UserForm(forms.ModelForm):
 		username=self.cleaned_data['username']
 		username.lower()
 		try:
-		 	exsistinguser=User.objects.get(username=username)
+		 	User.objects.get(username=username)
 		 	raise forms.ValidationError('Username taken')
 		except:
 			pass

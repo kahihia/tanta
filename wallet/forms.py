@@ -24,4 +24,15 @@ class SettingsForm(forms.ModelForm):
 class ContactForm(forms.Form):
 	contact_name=forms.CharField(label='',
 		widget=forms.TextInput(attrs={'placeholder':'Enter name or phone #'}))
-		
+class GroupForm(forms.ModelForm):
+	class Meta:
+		model=Group
+		fields=['name','group_type']
+	def clean(self):
+		cleaned_data=super().clean()
+		name=self.cleaned_data['name']
+		try:
+			Group.objects.get(name=name)
+			raise forms.ValidationError('Group already exists')
+		except:
+			pass

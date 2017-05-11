@@ -8,8 +8,9 @@
 
 	<div class='center'>
 <div class='col-6 mx-auto'>
-<a class="center btn btn-default mt3 mb4" href="{% url 'wallet:groups' %}?next={% url 'wallet:info' %}" role="button">Join a Group</a>
-	<a class="center btn btn-default mt3 mb4" href="{% url 'wallet:group_remove' %}?next={% url 'wallet:info' %}" role="button">Leave a Group</a>
+<a class="center btn btn-primary mt3 mb4" href="{% url 'wallet:groups' %}?next={% url 'wallet:info' %}" role="button">Join a Group</a>
+	<a class="center btn btn-danger mt3 mb4" href="{% url 'wallet:group_remove' %}?next={% url 'wallet:info' %}" role="button">Leave a Group</a>
+	<a class="center btn btn-success mt3 mb4" href="{% url 'wallet:group_create' %}?next={% url 'wallet:info' %}" role="button">Create a Group</a>
 	</div>
 </div>
 	{% groups %}

@@ -1,0 +1,14 @@
+{% extends "wallet/base.html" %}
+{% block content %}
+
+<div class="center container">
+<h2>Create a Group!</h2>
+<h4>Get started by creating a borrowing or lending group and invite your friends to join!</h4>
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<input type="hidden" name="next" value='{{ request.GET.next }}'>
+	<button type="submit">Create</button>
+</form>
+</div>
+{% endblock content %}

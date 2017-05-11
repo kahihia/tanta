@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.utils import timezone
 from django.views.generic import (TemplateView,CreateView,DetailView,ListView,UpdateView,DeleteView)
 from wallet.models import Wallet,Transactions,ForexRates,Settings,GroupMember,Group,Contacts,Social
-from wallet.forms import TransferForm,ForexForm,SettingsForm,ContactForm
+from wallet.forms import TransferForm,ForexForm,SettingsForm,ContactForm,GroupForm
 from home_page.models import UserProfileInfo
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -247,5 +247,17 @@ def group_remove(request):
 				group.delete()
 		return HttpResponseRedirect(redirect_to)
 	return render(request,'group_remove.html',{'group_list':user_groups})
+
+def create_group(request):
+	form = GroupForm()
+	if request.method=='POST':
+		form=GroupForm(request.POST)
+		if form.is_valid():
+			redirect_to=request.POST.get('next','')
+			name=form['name'].value()
+			group_type=form['group_type'].value()
+			Group.objects.create(name=name,group_type=group_type)
+			return HttpResponseRedirect(redirect_to)
+	return render(request,'group_form.html',{'form':form})
 
 
