@@ -18,5 +18,6 @@ urlpatterns=[
 	url(r'^groups/remove/$',views.group_remove,name='group_remove'),
 	url(r'^groups/create/$',views.create_group,name='group_create'),
 	url(r'^contacts/details/$',views.contact_detail,name='contact_detail'),
+	url(r'^contacts/remove/$',views.contact_remove,name='contact_remove'),
 
 ]

@@ -41,6 +41,7 @@ mixpanel.init("{{mixpanel}}");</script><!-- end Mixpanel -->
 			    <a href="{% url 'wallet:forex' %}"" class="btn block" style='color: black;'>Currency Exchange</a>
 			    <a href="{% url 'wallet:contacts' %}" class="btn block" style='color: black;'>Manage Contacts</a>
 			    <a href="{% url 'wallet:p2p' %}" class="btn block " style='color: black;'>Borrow or Lend</a>
+			    <a href="{% url 'wallet:settings' %}?next={{ request.path|urlencode }}" class="btn block " style='color: black;'>Settings</a>
 			  </div>
 			</div></li>
 		<li><a class="navbar-link" href="{% url 'wallet:info' %}">My Info</a></li>

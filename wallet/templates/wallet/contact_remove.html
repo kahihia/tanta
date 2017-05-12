@@ -1,0 +1,25 @@
+{% extends "wallet/base.html" %}
+{% block content %}
+    <div class="container">
+<div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
+<form method="post">
+{% csrf_token %}
+<h4 class='flex justify-center'>Choose a contact to remove:</h4>
+<select name='contact' id='contact'>
+{% for contact in contact_list %}
+<option value="{{contact.name}}">{{contact.name}}</option>	
+{% endfor %}
+</select>
+<input type="hidden" name="next" value='{{ request.GET.next }}'>
+<input type="submit" class="mt4 h3 p1 btn btn-success" value="Remove" id='btn-submit'>
+</form>
+<script>
+		$(document).ready(function(){
+			$('#btn-submit').submit(
+				mixpanel.track('Contact removed'))
+		
+	});
+</script>
+</div>
+</div>
+{% endblock content %}

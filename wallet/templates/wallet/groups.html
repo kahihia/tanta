@@ -21,9 +21,9 @@
 </div>
 <script>
 	$(document).ready(function(){
+			$('#btn-submit').submit(
+				mixpanel.track('User joined group'));
 		var form = $('form')
-		
-		
 		$('#type').change(function(){
 			$("#type option[value='']").remove();
 			$.ajax({

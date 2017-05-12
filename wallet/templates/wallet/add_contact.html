@@ -9,6 +9,13 @@
 <br>
 <input type="submit" class="h3 p1 btn btn-success" value="Add Contact">
 </form>
+<script>
+	$(document).ready(function(){
+			$('#btn-submit').submit(
+				mixpanel.track('Contact added'))
+		
+	});
+</script>
 </div>
 </div>
 {% endblock content %}

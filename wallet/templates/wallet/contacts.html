@@ -7,10 +7,12 @@
 {% display_contacts %}
 
 <a href="{% url 'wallet:add_contact' %}?next={{ request.path|urlencode }}" role='button'>Add Contacts</a>
+<a href="{% url 'wallet:contact_remove' %}?next={{ request.path|urlencode }}" role='button' style="color: #f4425c;">Remove Contacts</a>
     </div>
     </div>
 <script>
 	$(document).ready(function(){
+		mixpanel.track('Contacts page loaded')
 		$('h3').mouseenter(function(){
 			$(this).css('color','#495799')
 		});
