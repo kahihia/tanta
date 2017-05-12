@@ -4,7 +4,8 @@
 <h4>Click below to add some friends.</h4>
 {% else %}    
 {% for contact in contact_list %}
-{{contact.name}}
-
+<div class="center flex justify-center">
+<h3 class='flex justify-center' style="width: 100px;">{{contact.name}}</h3>
+</div>
 {% endfor %}
 {% endif %}

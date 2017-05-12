@@ -51,8 +51,14 @@ mixpanel.init("{{mixpanel}}");</script><!-- end Mixpanel -->
 </body>
 <script>
 	$(document).ready(function(){
-		$('#menu').click(function(){
-			$('#dropdown-content').toggle()
+		$('#menu').hover(function(){
+			$('#dropdown-content').toggle();
+			$('#dropdown-content').mouseenter(function(){
+				$(this).show();
+			});
+			$('#dropdown-content').mouseleave(function(){
+				$(this).hide();
+			});
 		});
 	})
 </script>

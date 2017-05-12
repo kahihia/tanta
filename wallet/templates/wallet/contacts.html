@@ -4,9 +4,37 @@
 <div class="container">
 <h1 class="center">My Contacts</h1>
 <div class="center px2 py2 white bg-gray bg-cover bg-center rounded" style='background:#e5e5e5; box-shadow: 5px 5px 30px #888888;''>
-<h2>{% display_contacts %}</h2>
+{% display_contacts %}
 
 <a href="{% url 'wallet:add_contact' %}?next={{ request.path|urlencode }}" role='button'>Add Contacts</a>
     </div>
     </div>
+<script>
+	$(document).ready(function(){
+		$('h3').mouseenter(function(){
+			$(this).css('color','#495799')
+		});
+		$('h3').mouseleave(function(){
+			$(this).css('color','#353533')
+		});
+		$('h3').click(function(){
+			var contact = $(this).html()
+			$.ajax({
+				url:"{% url 'wallet:contact_detail' %}",
+				datatype: 'json',
+				data: { contact : contact },
+				success: function(data) {
+					$(this).avgrund({
+					width: 400,
+					height: 300,
+					showClose: true,
+					showCloseText: 'close',
+					template: data
+				});
+			}
+			});
+			
+		});
+	});
+</script>
 {% endblock content %}

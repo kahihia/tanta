@@ -260,4 +260,11 @@ def create_group(request):
 			return HttpResponseRedirect(redirect_to)
 	return render(request,'group_form.html',{'form':form})
 
+def contact_detail(request):
+	user=request.user
+	contact=request.GET.get('contact',None)
+	transactions_list=Transactions.objects.filter(Q(sender=user,reciever=contact,transfer_date__lte=timezone.now()) | Q(reciever=user,sender=contact,transfer_date__lte=timezone.now())).order_by('-transfer_date')[:3]
+	data=serializers.serialize('json',transactions_list)
+	return HttpResponse(data,'json')
+
 
