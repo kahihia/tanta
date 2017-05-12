@@ -35,12 +35,11 @@ class UserForm(forms.ModelForm):
 		model=User
 		fields=('username','password')
 	def clean_username(self):
+		cleaned_data=super().clean()
 		username=self.cleaned_data['username']
-		username.lower()
-		try:
-		 	User.objects.get(username=username)
+		if User.objects.filter(username__iexact=username):
 		 	raise forms.ValidationError('Username taken')
-		except:
+		else:
 			pass
 		return username
 

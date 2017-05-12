@@ -20,19 +20,31 @@
 		$('h3').click(function(){
 			var contact = $(this).html()
 			$.ajax({
+				context: this,
 				url:"{% url 'wallet:contact_detail' %}",
 				datatype: 'json',
 				data: { contact : contact },
 				success: function(data) {
+					console.log(data[0].fields)
 					$(this).avgrund({
-					width: 400,
-					height: 300,
-					showClose: true,
-					showCloseText: 'close',
-					template: data
-				});
+						width: 400,
+						height: 300,
+						showClose: true,
+						showCloseText: 'close',
+						template: data.map(function(object,fields) {
+
+							var transaction = [object.fields.sender,'sent',object.fields.reciever,object.fields.amount,object.fields.transfer_date + '<br/>'].join(" ")
+								return "<h3>"+transaction+"</h3>";
+							
+						})
+
+						// (function(){
+						//   for (var i = 0; i < data.length; i++){
+						//     (data[i].fields.sender + " " + "sent" + " " +data[i].fields.reciever + " " + data[i].fields.amount)
+						// 				}})
+					});
 			}
-			});
+		});
 			
 		});
 	});
