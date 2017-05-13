@@ -193,6 +193,17 @@ def add_contacts(request):
 	
 	return render(request, 'add_contact.html', {'form':form})
 
+def contact_remove(request):
+	user_contacts=Contacts.objects.filter(user=request.user)
+	if request.method=='POST':
+		redirect_to=request.POST.get('next','')
+		contact_to_delete=request.POST.get('contact')
+		for contact in user_contacts:
+			if str(contact.name) == contact_to_delete:
+				contact.delete()
+		return HttpResponseRedirect(redirect_to)
+	return render(request,'contact_remove.html',{'contact_list':user_contacts})
+
 def p2p(request):
 	return render(request, 'p2p.html')
 
@@ -267,15 +278,5 @@ def contact_detail(request):
 	data=serializers.serialize('json',transactions_list)
 	return HttpResponse(data,'json')
 
-def contact_remove(request):
-	user_contacts=Contacts.objects.filter(user=request.user)
-	if request.method=='POST':
-		redirect_to=request.POST.get('next','')
-		contact_to_delete=request.POST.get('contact')
-		for contact in user_contacts:
-			if str(contact.name) == contact_to_delete:
-				contact.delete()
-		return HttpResponseRedirect(redirect_to)
-	return render(request,'contact_remove.html',{'contact_list':user_contacts})
 
 
