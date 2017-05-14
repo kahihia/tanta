@@ -35,6 +35,7 @@
             onLoad: false,
             onUnload: false,
             onClosing: false,
+            closeByObject: false,
             template: '<p>This is test popin content!</p>'
         };
 
@@ -119,6 +120,13 @@
                 body.unbind('keyup', onDocumentKeyup)
                     .unbind('click', onDocumentClick)
                     .removeClass('avgrund-active');
+
+            function closeByObject (e) {
+                if (options.closeByObject) {
+                    if ($(e.target).is('.close')) {
+                    }
+                }
+            }
 
                 setTimeout(function () {
                     $('.avgrund-popin').remove();
