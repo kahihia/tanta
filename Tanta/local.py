@@ -21,6 +21,7 @@ MEDIA_DIR=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMMUNITY_DIR=os.path.join(BASE_DIR,"community/templates/community")
 WALLET_DIR=os.path.join(BASE_DIR,"wallet/templates/wallet")
+P2P_DIR=os.path.join(BASE_DIR,"peer2peer/templates/peer2peer")
 ROOT_URLCONF = 'Tanta.urls'
 # WALLET_STATIC=os.path.join(BASE_DIR,"wallet/static")
 
@@ -93,7 +94,8 @@ INSTALLED_APPS = [
     'wallet',
     'django_celery_results',
     'mixpanel',
-    'tox'
+    'tox',
+    'peer2peer',
 ]
 
 
@@ -111,7 +113,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [HOME_dir, COMMUNITY_DIR, WALLET_DIR,],
+        'DIRS': [HOME_dir, COMMUNITY_DIR, WALLET_DIR,P2P_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

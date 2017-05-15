@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from home_page import views
 from dashboard import views
+from peer2peer import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views
 
@@ -30,5 +31,6 @@ urlpatterns =[
     url(r'^accounts/login/$',views.login,name='login'),
     url(r'^accounts/logout/$',views.logout,name='logout',kwargs={'next_page':'/'}),
     url(r'^wallet/',include("wallet.urls",namespace="wallet")),
+    url(r'^peer2peer/',include("peer2peer.urls",namespace="p2p")),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
